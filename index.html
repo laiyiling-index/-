@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>癌症導航與社會資源智慧系統 (Cancer Resource Navigation App)</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: "Helvetica Neue", Arial, "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+            background-color: #F7F5F0; /* 日系亞麻米底色 */
+            color: #3A3A3A; /* 柔和深灰 */
+            line-height: 1.7; margin: 0; padding: 0;
+            font-weight: 700; /* 全域字體加粗 */
+        }
+        .app-container {
+            max-width: 800px; margin: 40px auto; background: #FDFBF7; /* 手作紙張感白 */
+            border-radius: 16px; box-shadow: 0 8px 30px rgba(107, 142, 35, 0.1); overflow: hidden; 
+            border: 2px solid #E3DEC3;
+            border-top: 10px solid #6B8E23; /* 抹茶綠頂條 */
+        }
+        .app-header { 
+            background-color: #6B8E23; /* 抹茶綠 */
+            color: #FDFBF7; padding: 35px 30px; text-align: center;
+            background-image: radial-gradient(#7A9F33 15%, transparent 16%), radial-gradient(#7A9F33 15%, transparent 16%);
+            background-size: 30px 30px; background-position: 0 0, 15px 15px; /* 日系點點復古風 */
+        }
+        .app-header h1 { margin: 0; font-size: 28px; font-weight: 900; letter-spacing: 2px; text-shadow: 1px 1px 2px rgba(0,0,0,0.15); }
+        .app-header p { margin: 12px 0 0 0; font-size: 16px; font-weight: 800; opacity: 0.95; letter-spacing: 1px; }
+        
+        /* 頁籤美化 */
+        .tabs { display: flex; background: #EFECE4; border-bottom: 2px solid #E3DEC3; padding: 0 10px; }
+        .tab-btn {
+            flex: 1; padding: 16px 10px; text-align: center; background: none; border: none;
+            font-size: 18px; font-weight: 900; color: #555555; cursor: pointer; transition: all 0.2s;
+            margin: 5px 2px 0 2px; border-radius: 10px 10px 0 0;
+        }
+        .tab-btn.active { background: #FDFBF7; color: #6B8E23; border-top: 3px solid #6B8E23; font-size: 19px; }
+        
+        .tab-content { padding: 40px 35px; }
+        .tab-content.active { display: block; }
+        
+        /* 章節標題 */
+        h2 { font-size: 22px; color: #4A5D23; border-bottom: 2px dashed #C2CCA3; padding-bottom: 8px; margin-top: 0; margin-bottom: 25px; font-weight: 900; display: flex; align-items: center; }
+        h2::before { content: "🌱 "; margin-right: 8px; font-size: 20px; }
+        
+        .form-group { margin-bottom: 28px; }
+        .form-group label { display: block; font-weight: 900; margin-bottom: 10px; color: #4A5D23; font-size: 18px; }
+        .form-row { display: flex; gap: 20px; }
+        .form-row .form-group { flex: 1; }
+        
+        /* 輸入框與下拉選單 */
+        input[type="text"], input[type="number"], select, textarea {
+            width: 100%; padding: 12px 14px; border: 2px solid #D1CBB3; border-radius: 10px;
+            font-size: 17px; color: #3A3A3A; background-color: #FDFBF7; outline: none; transition: all 0.2s; font-weight: 800;
+        }
+        input[type="text"]:focus, input[type="number"]:focus, select:focus, textarea:focus { border-color: #6B8E23; background-color: #FFFFFA; box-shadow: 0 0 0 4px rgba(107, 142, 35, 0.15); }
+        textarea { font-family: inherit; resize: vertical; min-height: 100px; }
+
+        /* 複選方格 */
+        .checkbox-group {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px;
+            background: #F4F1E9; padding: 18px; border-radius: 12px; border: 2px solid #E3DEC3;
+        }
+        .checkbox-item { display: flex; align-items: center; font-size: 16px; color: #444444; cursor: pointer; font-weight: 800; }
+        .checkbox-item input { margin-right: 10px; transform: scale(1.3); accent-color: #6B8E23; cursor: pointer; }
+        
+        /* 心情溫度計表格 */
+        .bsrs-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; border: 2px solid #E3DEC3; border-radius: 8px; overflow: hidden; }
+        .bsrs-table th, .bsrs-table td { padding: 14px; text-align: left; border-bottom: 1px solid #E3DEC3; font-size: 16px; }
+        .bsrs-table th { background-color: #EFECE4; color: #4A5D23; font-weight: 900; }
+        .bsrs-options { display: flex; gap: 12px; }
+        .bsrs-options label { display: flex; align-items: center; font-size: 16px; font-weight: 800; margin: 0; cursor: pointer; }
+        .bsrs-options input { margin-right: 5px; transform: scale(1.2); accent-color: #6B8E23; }
+        
+        /* 按鈕樣式 */
+        .btn-submit {
+            display: block; width: 100%; background-color: #6B8E23; color: white; border: none;
+            padding: 16px; font-size: 19px; font-weight: 900; border-radius: 10px; cursor: pointer;
+            transition: all 0.3s; margin-top: 30px; box-shadow: 0 4px 12px rgba(107, 142, 35, 0.2);
+            border-bottom: 4px solid #4A5D23;
+        }
+        .btn-submit:hover { background-color: #5B7D1A; transform: translateY(-1px); box-shadow: 0 6px 16px rgba(107, 142, 35, 0.3); }
+        .btn-submit:active { transform: translateY(1px); border-bottom: 1px solid #4A5D23; }
+        
+        /* 結果呈現頁面 */
+        .result-section { background: #F1F4E8; border: 2px solid #D2DCB4; border-radius: 12px; padding: 24px; margin-bottom: 30px; }
+        .result-section h3 { margin-top: 0; color: #3D4F1D; font-size: 19px; display: flex; align-items: center; gap: 10px; font-weight: 900; }
+        
+        /* 資源卡片美化 */
+        .resource-card { background: #FDFBF7; border: 2px solid #E3DEC3; border-radius: 10px; padding: 22px; margin-bottom: 18px; box-shadow: 0 4px 10px rgba(0,0,0,0.02); }
+        .resource-card h4 { margin: 0 0 12px 0; color: #5B7D1A; font-size: 18px; font-weight: 900; display: flex; align-items: center; }
+        .resource-card h4::before { content: "🍀"; margin-right: 6px; }
+        .resource-card p { margin: 0 0 14px 0; font-size: 16px; color: #444444; font-weight: 800; }
+        
+        /* 連結按鈕 */
+        .resource-link {
+            display: inline-block; background-color: #F6F3E6; color: #5B7D1A; padding: 10px 18px;
+            border-radius: 8px; text-decoration: none; font-size: 15px; font-weight: 900; transition: all 0.2s; border: 2px solid #C2CCA3; margin-bottom: 8px;
+        }
+        .resource-link:hover { background-color: #6B8E23; color: white; border-color: #6B8E23; }
+        
+        /* 海報圖片美化 */
+        .poster-img {
+            display: block; max-width: 100%; height: auto; border-radius: 12px; 
+            margin: 15px auto; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border: 2px solid #E3DEC3;
+        }
+
+        /* 高風險警示框 */
+        .alert-box {
+            background-color: #FFF0F5; border: 2px dashed #E53E3E; border-left: 8px solid #E53E3E; color: #742A2A;
+            padding: 20px; border-radius: 10px; margin-bottom: 25px; font-size: 16px; font-weight: 800;
+        }
+        .alert-box a { color: #E53E3E; font-weight: 900; text-decoration: underline; font-size: 17px; }
+        
+        /* 滿意度框 */
+        .rating-group {
+            display: flex; gap: 20px; align-items: center; background: #F4F1E9; padding: 16px;
+            border-radius: 10px; border: 2px solid #E3DEC3; margin-bottom: 14px;
+        }
+        .rating-title { font-size: 16px; font-weight: 900; width: 260px; color: #4A5D23; line-height: 1.4; }
+        .rating-options { display: flex; gap: 12px; font-size: 15px; font-weight: 800; align-items: center; }
+        .rating-options input { transform: scale(1.2); margin-right: 4px; accent-color: #6B8E23; }
+        
+        .loading-text { color: #6B8E23; font-weight: 900; display: none; margin-top: 15px; text-align: center; font-size: 17px; }
+        .warning-text { background-color: #FFFDF0; border: 2px solid #EEDCA5; border-left: 6px solid #DD6B20; color: #692411; padding: 16px; font-size: 15px; border-radius: 8px; margin-bottom: 20px; font-weight: 800; }
+    </style>
+</head>
+<body>
+
+<div class="app-container">
+    <div class="app-header">
+        <h1>癌症導航與社會資源智慧系統</h1>
+        <p>箇中關懷 · 資源隨行 | 專專專專專專為癌友設計的自主資源導引平台</p>
+    </div>
+
+    <div class="tabs">
+        <button class="tab-btn active" onclick="switchTab('client-tab')">🔍 資源評估檢索</button>
+        <button class="tab-btn" onclick="switchTab('result-tab')" id="nav-result-tab" style="display:none;">🎁 專屬資源結果</button>
+        <button class="tab-btn" onclick="switchTab('satisfaction-tab')" id="nav-sat-tab" style="display:none;">⭐ 滿意度回饋</button>
+    </div>
+
+    <!-- 頁籤一：資料輸入 -->
+    <div id="client-tab" class="tab-content active">
+        <form id="resourceForm" onsubmit="processData(event)">
+            <h2>1. 基本資料登記</h2>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="pName">姓名 / 代稱</label>
+                    <input type="text" id="pName" placeholder="請輸入姓名或稱呼" required>
+                </div>
+                <div class="form-group">
+                    <label for="pPhone">聯絡電話 (選填，後台關懷追蹤用)</label>
+                    <input type="text" id="pPhone" placeholder="例：0912345678 (選填)">
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="pGender">生理性別</label>
+                    <select id="pGender" required>
+                        <option value="">--請選擇--</option>
+                        <option value="男">男</option>
+                        <option value="女">女</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="pBirthMinguo">出生民國年 (如 64)</label>
+                    <input type="number" id="pBirthMinguo" min="1" max="115" placeholder="例：64" oninput="calculateAge()" required>
+                </div>
+                <div class="form-group">
+                    <label>計算歲數</label>
+                    <input type="text" id="pAge" readonly style="background:#EFECE4;" value="-- 歲">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="pCancerType">確診癌別</label>
+                    <select id="pCancerType" required>
+                        <option value="">--請選擇--</option>
+                        <option value="乳癌">乳癌</option>
+                        <option value="肺癌">肺癌</option>
+                        <option value="大腸直腸癌">大腸直腸癌</option>
+                        <option value="肝癌">肝癌</option>
+                        <option value="胃癌">胃癌</option>
+                        <option value="攝護腺癌">攝護腺癌</option>
+                        <option value="婦科癌">婦科癌</option>
+                        <option value="頭頸癌">頭頸癌</option>
+                        <option value="其他癌別">其他癌別</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="pStage">診斷期別</label>
+                    <select id="pStage" required>
+                        <option value="">--請選擇--</option>
+                        <option value="原位癌">原位癌</option>
+                        <option value="一期">一期</option>
+                        <option value="二期">二期</option>
+                        <option value="三期">三期</option>
+                        <option value="四期">四期</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="pCounty">居住縣市</label>
+                    <select id="pCounty" required>
+                        <option value="">--請選擇--</option>
+                        <option value="彰化">彰化縣</option>
+                        <option value="雲林">雲林縣</option>
+                        <option value="嘉義市">嘉義市</option>
+                        <option value="嘉義縣">嘉義縣</option>
+                        <option value="台南">台南市</option>
+                        <option value="高雄">高雄市</option>
+                        <option value="屏東">屏東縣</option>
+                        <option value="其他">其他縣市</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>目前治療階段 (可複選)</label>
+                <div class="checkbox-group">
+                    <label class="checkbox-item"><input type="checkbox" name="treatment" value="術前">術前</label>
+                    <label class="checkbox-item"><input type="checkbox" name="treatment" value="術後">術後</label>
+                    <label class="checkbox-item"><input type="checkbox" name="treatment" value="化療">化療</label>
+                    <label class="checkbox-item"><input type="checkbox" name="treatment" value="電療">電療</label>
+                    <label class="checkbox-item"><input type="checkbox" name="treatment" value="追蹤期">追蹤期</label>
+                </div>
+            </div>
+
+            <h2>2. 福利身分資格 (可複選)</h2>
+            <div class="form-group">
+                <div class="checkbox-group" style="grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));">
+                    <label class="checkbox-item"><input type="checkbox" name="welfare" value="重大傷病">重大傷病</label>
+                    <label class="checkbox-item"><input type="checkbox" name="welfare" value="身心障礙證明-輕度">身心障礙證明-輕度</label>
+                    <label class="checkbox-item"><input type="checkbox" name="welfare" value="身心障礙證明-中度">身心障礙證明-中度</label>
+                    <label class="checkbox-item"><input type="checkbox" name="welfare" value="身心障礙證明-重度/極重度">身心障礙證明-重度/極重度</label>
+                    <label class="checkbox-item"><input type="checkbox" name="welfare" value="中低收">中低收入戶</label>
+                    <label class="checkbox-item"><input type="checkbox" name="welfare" value="低收">低收入戶</label>
+                    <label class="checkbox-item"><input type="checkbox" name="welfare" value="勞保">勞工保險 (勞保)</label>
+                    <label class="checkbox-item"><input type="checkbox" name="welfare" value="農保">農民保險 (農保)</label>
+                    <label class="checkbox-item"><input type="checkbox" name="welfare" value="漁保">漁會甲類勞保 (漁保)</label>
+                    <label class="checkbox-item"><input type="checkbox" name="welfare" value="國保">國民年金 (國保)</label>
+                    <label class="checkbox-item"><input type="checkbox" name="welfare" value="原住民">原住民身分</label>
+                    <label class="checkbox-item"><input type="checkbox" name="welfare" value="外籍配偶">新住民 / 外籍配偶</label>
+                </div>
+            </div>
+
+            <h2>3. 醫療保險狀況 (可複選)</h2>
+            <div class="form-group">
+                <div class="checkbox-group" style="grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));">
+                    <label class="checkbox-item"><input type="checkbox" name="insurance" value="無" onchange="toggleNoInsurance(this)">無</label>
+                    <label class="checkbox-item"><input type="checkbox" name="insurance" value="實支實付">實支實付型</label>
+                    <label class="checkbox-item"><input type="checkbox" name="insurance" value="日額給付">住院日額型</label>
+                    <label class="checkbox-item"><input type="checkbox" name="insurance" value="手術險">手術醫療險</label>
+                    <label class="checkbox-item"><input type="checkbox" name="insurance" value="壽險">傳統壽險</label>
+                    <label class="checkbox-item"><input type="checkbox" name="insurance" value="初罹癌給付">癌症險(初罹癌給付)</label>
+                </div>
+            </div>
+
+            <h2>4. 心情溫度計 (BSRS-5 簡式健康量表評估)</h2>
+            <table class="bsrs-table">
+                <thead><tr><th>評估項目 (最近一星期困擾程度)</th><th>分數 (0=無 ~ 4=極重)</th></tr></thead>
+                <tbody>
+                    <tr><td>1. 感覺緊張不安</td><td><div class="bsrs-options"><label><input type="radio" name="bsrs1" value="0" checked> 0</label><label><input type="radio" name="bsrs1" value="1"> 1</label><label><input type="radio" name="bsrs1" value="2"> 2</label><label><input type="radio" name="bsrs1" value="3"> 3</label><label><input type="radio" name="bsrs1" value="4"> 4</label></div></td></tr>
+                    <tr><td>2. 覺得容易苦惱或動怒</td><td><div class="bsrs-options"><label><input type="radio" name="bsrs2" value="0" checked> 0</label><label><input type="radio" name="bsrs2" value="1"> 1</label><label><input type="radio" name="bsrs2" value="2"> 2</label><label><input type="radio" name="bsrs2" value="3"> 3</label><label><input type="radio" name="bsrs2" value="4"> 4</label></div></td></tr>
+                    <tr><td>3. 感覺憂鬱、心情低落</td><td><div class="bsrs-options"><label><input type="radio" name="bsrs3" value="0" checked> 0</label><label><input type="radio" name="bsrs3" value="1"> 1</label><label><input type="radio" name="bsrs3" value="2"> 2</label><label><input type="radio" name="bsrs3" value="3"> 3</label><label><input type="radio" name="bsrs3" value="4"> 4</label></div></td></tr>
+                    <tr><td>4. 覺得比不上別人</td><td><div class="bsrs-options"><label><input type="radio" name="bsrs4" value="0" checked> 0</label><label><input type="radio" name="bsrs4" value="1"> 1</label><label><input type="radio" name="bsrs4" value="2"> 2</label><label><input type="radio" name="bsrs4" value="3"> 3</label><label><input type="radio" name="bsrs4" value="4"> 4</label></div></td></tr>
+                    <tr><td>5. 睡眠困難，如不易入睡等</td><td><div class="bsrs-options"><label><input type="radio" name="bsrs5" value="0" checked> 0</label><label><input type="radio" name="bsrs5" value="1"> 1</label><label><input type="radio" name="bsrs5" value="2"> 2</label><label><input type="radio" name="bsrs5" value="3"> 3</label><label><input type="radio" name="bsrs5" value="4"> 4</label></div></td></tr>
+                    <tr style="background:#FFF5F5;"><td style="color:#c53030; font-weight:bold;">★ 附加題：有自殺想法嗎？</td><td><div class="bsrs-options"><label><input type="radio" name="bsrs_suicide" value="0" checked> 0(無)</label><label><input type="radio" name="bsrs_suicide" value="1"> 1(輕)</label><label><input type="radio" name="bsrs_suicide" value="2"> 2(重)</label><label><input type="radio" name="bsrs_suicide" value="3"> 3(重)</label><label><input type="radio" name="bsrs_suicide" value="4"> 4(極重)</label></div></td></tr>
+                </tbody>
+            </table>
+
+            <h2>5. 您與家屬目前最需要的協助 (可複選)</h2>
+            <div class="form-group">
+                <div class="checkbox-group" style="grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));">
+                    <label class="checkbox-item"><input type="checkbox" name="needs" value="醫療資訊">醫療資訊</label>
+                    <label class="checkbox-item"><input type="checkbox" name="needs" value="治療副作用">治療副作用</label>
+                    <label class="checkbox-item"><input type="checkbox" name="needs" value="營養資源">營養資源</label>
+                    <label class="checkbox-item"><input type="checkbox" name="needs" value="心理支持">心理支持</label>
+                    <label class="checkbox-item"><input type="checkbox" name="needs" value="經濟需求">經濟需求 / 補助</label>
+                    <label class="checkbox-item"><input type="checkbox" name="needs" value="康復用品">康復用品</label>
+                    <label class="checkbox-item"><input type="checkbox" name="needs" value="長照資源">長照資源</label>
+                    <label class="checkbox-item"><input type="checkbox" name="needs" value="轉介醫院專業人員">轉介醫院專業人員協助</label>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-submit">🚀 送出資料並生成智慧資源導航</button>
+            <div id="loading1" class="loading-text">正在同步雲端資料庫，請稍候...</div>
+        </form>
+    </div>
+
+    <!-- 頁籤二：專屬資源結果 -->
+    <div id="result-tab" class="tab-content">
+        <div id="crisis-alert" class="alert-box" style="display:none;">
+            <strong>⚠️ 系統緊急關懷提示：</strong>
+            您的心情自我評測已達高度關懷指標。請讓我們陪伴您渡過難難難關。<br>
+            醫療團隊特別窗口：<a href="https://docs.google.com/forms/d/e/1FAIpQLScTMuaMN-m4hTsfRYVHs4Yuf9RWFmJ-k5Y6ls2e1JTbdmhJqQ/viewform?usp=publish-editor" target="_blank">【點此立即線上預約院內專業協助】</a>，或直撥 24 小時免付費安心專線：<strong>1925</strong>。
+        </div>
+
+        <div class="result-section">
+            <h3 id="user-welcome-title">✨ 專屬資源導航結果</h3>
+            <p id="user-profile-summary" style="font-size:17px; color:#2d3748; margin-top:5px;"></p>
+        </div>
+
+        <div class="result-section" id="dynamic-welfare-section" style="background:#FDFBF7; border-color:#E3DEC3; display:none;">
+            <h3 style="color:#6B8E23;">💡 依據您的福利/治療身分，符合之法定權益提示：</h3>
+            <div class="warning-text">📢 溫馨叮嚀：以下福利資源僅供參考。部分福利具有嚴格的排富性質，有些社會保險失能給付（如勞保、農保等器官切除 or 障礙鑑定）則需要治療滿 6 個月以上、且經診斷疾病無法改善後才能申請。如有任何疑問，請聯繫相關主管單位詳細諮詢。</div>
+            <div id="dynamic-welfare-content"></div>
+        </div>
+
+        <div id="resources-output-list"></div>
+        
+        <!-- 🎯 順序優化：看完結果後，溫馨引導去填答 -->
+        <button class="btn-submit" style="background-color:#6B8E23; border-bottom-color: #4A5D23; margin-top: 40px;" onclick="switchTab('satisfaction-tab')">👉 我已看完資源，前往填寫回饋</button>
+    </div>
+
+    <!-- 頁籤三：滿意度調查 -->
+    <div id="satisfaction-tab" class="tab-content">
+        <h2>6. 系統使用滿意度回饋</h2>
+        <form id="satForm" onsubmit="submitSatisfaction(event)">
+            <div class="rating-group">
+                <div class="rating-title">1. 您對於『資源提供的豐富性』是否滿意？</div>
+                <div class="rating-options">
+                    <label><input type="radio" name="sat_res" value="1" required> 1分</label>
+                    <label><input type="radio" name="sat_res" value="2"> 2分</label>
+                    <label><input type="radio" name="sat_res" value="3" checked> 3分</label>
+                    <label><input type="radio" name="sat_res" value="4"> 4分</label>
+                    <label><input type="radio" name="sat_res" value="5"> 5分</label>
+                </div>
+            </div>
+            <div class="rating-group">
+                <div class="rating-title">2. 您對於『系統操作便利性』是否滿意？</div>
+                <div class="rating-options">
+                    <label><input type="radio" name="sat_opt" value="1" required> 1分</label>
+                    <label><input type="radio" name="sat_opt" value="2"> 2分</label>
+                    <label><input type="radio" name="sat_opt" value="3" checked> 3分</label>
+                    <label><input type="radio" name="sat_opt" value="4"> 4分</label>
+                    <label><input type="radio" name="sat_opt" value="5"> 5分</label>
+                </div>
+            </div>
+            <div class="rating-group">
+                <div class="rating-title">3. 系統提供您的資源，後續您會嘗試使用嗎？</div>
+                <div class="rating-options">
+                    <!-- 🎯 必填優化：拿掉預選，改為純粹手動必填題 -->
+                    <label><input type="radio" name="sat_all" value="會" required> 會</label>
+                    <label><input type="radio" name="sat_all" value="考慮中"> 考慮中</label>
+                    <label><input type="radio" name="sat_all" value="不會"> 不會</label>
+                </div>
+            </div>
+            <div class="form-group" style="margin-top: 20px;">
+                <label style="color:#4A5D23; font-size: 17px;">4. 對於本系統的建議與回饋 (選填)</label>
+                <textarea id="satComments" placeholder="歡迎寫下您的寶貴意見或需要我們加強的地方，幫助我們做得更好..."></textarea>
+            </div>
+            <button type="submit" class="btn-submit" style="background-color:#6B8E23; border-bottom-color: #4A5D23;">💾 送出滿意度並完成登記</button>
+            <div id="loading2" class="loading-text">正在將滿意度寫入雲端資料庫...</div>
+        </form>
+    </div>
+</div>
+
+<script {safari-fix}>
+    const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwWFPe2OrbapgI4tIFoBE8jgW79HBochs5ntt1ShBVRy9IygDh6psaXtC-0UpFetJYAlA/exec";
+
+    let currentCasePayload = null;
+
+    function switchTab(tabId) {
+        document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+        document.getElementById(tabId).classList.add('active');
+        
+        let btnIndex = (tabId === 'client-tab') ? 0 : (tabId === 'result-tab' ? 1 : 2);
+        document.querySelectorAll('.tab-btn')[btnIndex].classList.add('active');
+    }
+
+    function calculateAge() {
+        const minguoYear = document.getElementById('pBirthMinguo').value;
+        const currentYear = new Date().getFullYear();
+        if(minguoYear && minguoYear > 0) {
+            const adYear = parseInt(minguoYear) + 1911;
+            if (adYear <= currentYear) {
+                document.getElementById('pAge').value = (currentYear - adYear) + " 歲";
+            } else {
+                document.getElementById('pAge').value = "-- 歲";
+            }
+        } else {
+            document.getElementById('pAge').value = "-- 歲";
+        }
+    }
+
+    function toggleNoInsurance(checkbox) {
+        const insCheckboxes = document.querySelectorAll('input[name="insurance"]');
+        insCheckboxes.forEach(cb => {
+            if(checkbox.checked && cb.value !== "無") { cb.checked = false; cb.disabled = true; }
+            else if(!checkbox.checked) { cb.disabled = false; }
+        });
+    }
+
+    function processData(e) {
+        e.preventDefault();
+        document.getElementById('loading1').style.display = "block";
+        
+        const name = document.getElementById('pName').value;
+        const phone = document.getElementById('pPhone').value || "未填寫";
+        const gender = document.getElementById('pGender').value;
+        const age = parseInt(document.getElementById('pAge').value) || 0;
+        const cancer = document.getElementById('pCancerType').value;
+        const stage = document.getElementById('pStage').value;
+        const county = document.getElementById('pCounty').value;
+
+        let treatments = []; document.querySelectorAll('input[name="treatment"]:checked').forEach(cb => treatments.push(cb.value));
+        let welfares = []; document.querySelectorAll('input[name="welfare"]:checked').forEach(cb => welfares.push(cb.value));
+        let insurances = []; document.querySelectorAll('input[name="insurance"]:checked').forEach(cb => insurances.push(cb.value));
+        let needs = []; document.querySelectorAll('input[name="needs"]:checked').forEach(cb => needs.push(cb.value));
+
+        let bsrsScore = 0;
+        for(let i=1; i<=5; i++) { bsrsScore += parseInt(document.querySelector(`input[name="bsrs${i}"]:checked`).value); }
+        let suicideScore = parseInt(document.querySelector('input[name="bsrs_suicide"]:checked').value);
+        let isUrgent = (bsrsScore >= 15 || suicideScore > 0);
+
+        currentCasePayload = {
+            name: name, phone: phone, gender: gender, age: age, county: county, cancer: cancer, stage: stage,
+            treatments: treatments.join("、"), welfares: welfares.join("、"), insurances: insurances.join("、"),
+            needs: needs.join("、"), bsrs: bsrsScore + (suicideScore > 0 ? ` (自殺意念:${suicideScore}分)` : ""),
+            urgent: isUrgent
+        };
+
+        fetch(GAS_WEB_APP_URL, {
+            method: "POST",
+            mode: "no-cors",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(currentCasePayload)
+        }).then(() => {
+            document.getElementById('loading1').style.display = "none";
+        });
+
+        document.getElementById('nav-result-tab').style.display = "block";
+        document.getElementById('nav-sat-tab').style.display = "block";
+        document.getElementById('user-welcome-title').innerHTML = `✨ 專屬資源導航結果 (個案：${name} ${gender}士，${age}歲)`;
+        document.getElementById('user-profile-summary').innerHTML = `<strong>居住地：</strong>${county} | <strong>病情：</strong>${cancer}(${stage}) <br> <strong>治療進度：</strong>${treatments.join(', ') || '無註記'} | <strong>福利資格：</strong>${welfares.join(', ') || '一般身分'}`;
+        document.getElementById('crisis-alert').style.display = isUrgent ? "block" : "none";
+
+        let dynamicWelfareHtml = "";
+        if (welfares.includes("低收") || welfares.includes("中低收")) {
+            dynamicWelfareHtml += `<div class='resource-card' style='border-left: 6px solid #dd6b20;'>
+                <h4>💰 經濟扶助聯動：低收/中低收入戶專屬</h4>
+                <p>依據您的福利身分，符合各縣市政府之<strong>【看護補助】</strong>與<strong>【醫療費用補助】</strong>資格。有需求者<strong>「請保留診斷書（內容須註明：因為疾病需要，需專人看護）與醫療收據正本、看護證明及看護收據」</strong>，相關文件請送至戶籍地之村/里幹事。若有任何申請疑問，歡迎來電洽詢 <strong>(05)276-5041 分機 7175 或 7180 社工室</strong>，我們將為您詳細解答。</p>
+            </div>`;
+        }
+        if (treatments.includes("術後") && (welfares.includes("勞保") || welfares.includes("農保") || welfares.includes("漁保"))) {
+            dynamicWelfareHtml += `<div class='resource-card' style='border-left: 6px solid #3182ce;'><h4>✂️ 手術後權益聯動：法定保險失能給付</h4><p>偵測到您已完成手術且具備社會保險身分。請特別注意：社會保險失能給付通常需要您在手術療程結束、<strong>治療滿 6 個月以上</strong>且經醫師診斷症狀固定、無法改善後才能向勞/農/漁保局提出申請。部分符合障礙標準者，亦可於門診時<strong>主動洽詢您的手術主治醫師</strong>評估是否開立障礙鑑定報告。</p></div>`;
+        }
+        if (welfares.includes("重大傷病")) {
+            dynamicWelfareHtml += `<div class='resource-card' style='border-left: 6px solid #319795;'><h4>🏥 健保權益聯動：重大傷病免部分負擔</h4><p>癌症核定重大傷病後，<strong>「該癌別相關看診與住院，均可免除 10% 的健保部分負擔費用」</strong>，就醫時請主動出示健保卡。</p></div>`;
+        }
+        if (welfares.includes("外籍配偶")) {
+            dynamicWelfareHtml += `<div class='resource-card' style='border-left: 4px solid #805ad5;'><h4>🌏 跨國關懷聯動：新住民家庭服務中心</h4><p>各縣市均設有專責新住民服務中心，本系統已聯動在地窗口：<br>- 嘉義市：(05)231-1557 | 嘉義縣：(05)362-1150，可提供生活與適應協處。</p></div>`;
+        }
+        
+        if(dynamicWelfareHtml !== "") {
+            document.getElementById('dynamic-welfare-content').innerHTML = dynamicWelfareHtml;
+            document.getElementById('dynamic-welfare-section').style.display = "block";
+        } else { document.getElementById('dynamic-welfare-section').style.display = "none"; }
+
+        let resourcesHtml = "<h2>6. 動態媒合之可信任官方資源清單</h2>";
+        if (needs.length === 0) needs = ["醫療資訊", "治療副作用", "營養資源", "心理支持", "經濟需求", "康復用品", "長照資源", "轉介醫院專業人員"];
+
+        needs.forEach(need => {
+            if (need === "醫療資訊") {
+                if (cancer === "乳癌") {
+                    resourcesHtml += `<div class="resource-card"><h4>📘 本院乳癌專科醫療與團體資源導航</h4>
+                    <p>已為您精準連線本院（嘉義基督教醫院）多專科照護團隊與病友團體專區。提供您乳癌整合醫療、最新衛教資訊以及實體溫慢陪伴：</p>
+                    <p><strong>【布蕾斯特聯誼會（乳癌病友團體）入會指引】</strong>：抗癌路上您並不孤單，歡迎加入本院布蕾斯特聯誼會相互扶持。<strong>「請至社工室 (D棟1樓) 或癌症病友服務中心 (門診大樓二樓) 填寫入會申請表，即可免費入會。」</strong></p>
+                    <a href="https://www.cych-surgery.org.tw/page2_content.aspx?p_type=2&c_id=0&id=8&p_id=41" target="_blank" class="resource-link">🌐 進入 1. 嘉基一般外科 - 乳房外科官方網站</a><br>
+                    <a href="https://department.cych.org.tw/item.aspx?unitNo=3700&cID=1100&ID=1332" target="_blank" class="resource-link">🌐 進入 2. 嘉基乳癌暨乳房外科核心照護團隊專區</a></div>`;
+                } else {
+                    resourcesHtml += `<div class="resource-card"><h4>📘 癌症醫療資訊導航</h4><p>實證醫學癌症基礎衛教及照護手冊。</p><a href="https://knowledge.ecancer.org.tw/knowledge/useful_tool/health_manual?articles_cat=hm_001" target="_blank" class="resource-link">🌐 進入 台灣癌症基金會官網</a></div>`;
+                }
+            }
+            if (need === "治療副作用") {
+                resourcesHtml += `<div class="resource-card"><h4>🧪 治療副作用管理與照護</h4><p>化療、放療、手術及各項治療副作用之日常照護權威解答與實用管理指引。</p><a href="https://www.crm.org.tw/sub-category/2/?category=a" target="_blank" class="resource-link">🌐 進入 台灣癌症資源網-治療副作用照護專區</a></div>`;
+            }
+            if (need === "營養資源") {
+                resourcesHtml += `<div class="resource-card"><h4>🥦 癌症營養評估與專業諮詢</h4>`;
+                
+                if (cancer === "頭頸癌") {
+                    resourcesHtml += `<p style="background-color: #FFFDF0; border: 2px dashed #6B8E23; padding: 14px; border-radius: 8px; margin-bottom: 15px;">
+                    <strong>🌟 【頭頸癌病友專屬】放射科營養諮詢（免費）：</strong><br>
+                    療程期間補充足夠營養是順利完成放療的關鍵，本院特別提供免費放療諮詢服務，歡迎病友多加利用。<br>
+                    ⏰ 服務時間：<strong>星期二上午 9:00 - 12:00</strong>、<strong>星期三下午 14:00 - 17:00</strong><br>
+                    📍 實體諮詢地點：<strong>G棟地下二樓 放射腫瘤科</strong></p>`;
+                }
+                
+                resourcesHtml += `<p><strong>【本院常態資源】</strong>：預約電話 <strong>(05)276-5041 轉分機 2231</strong>。地點：門診大樓<strong>局2樓」營養諮詢室</strong>。亦可同步參考線上權威資源：</p>
+                <a href="https://www.crm.org.tw/sub-category/5/?category=a" target="_blank" class="resource-link">🌐 進入 台灣癌症資源網 - 飲食與營養專區</a></div>`;
+            }
+            if (need === "心理支持") {
+                let pTxt = county.includes("嘉義縣") ? "嘉義縣心衛中心 : 05-3621150" : "嘉義市心衛中心 : 05-2255155";
+                if (county === "其他") pTxt = "請洽居住地衛生局社區心理衛生中心詢問";
+
+                resourcesHtml += `<div class="resource-card"><h4>❤️ 心理支持與情緒協談</h4>
+                <p>面對治療帶來的心理壓力，專業的協談團隊隨時都在。歡迎多加利用實體與線上免費資源：</p>`;
+                
+                if (cancer === "頭頸癌") {
+                    resourcesHtml += `<p style="background-color: #FFFDF0; border: 2px dashed #6B8E23; padding: 14px; border-radius: 8px; margin-top: 15px; margin-bottom: 15px;">
+                    <strong>🌟 【頭頸癌/口腔癌病友專屬團隊】陽光社會福利基金會雲嘉中心：</strong><br>
+                    整合社工、復健、心理、社教等專業團隊，全方位協助頭頸癌病人改善生理功能、提升職業能力、增進社會參與，並促進社區安全與健康。<br><br>
+                    📞 服務電話：<strong>(05)228-0300</strong><br>
+                    📍 服務地址：<strong>600嘉義市西區延平街448號12樓之2</strong>
+                    <img src="yangsun.jpg" alt="陽光基金會雲嘉中心海報" class="poster-img">
+                    </p>
+                    <a href="https://forms.gle/kgFvzZQDHHTbSnB39" target="_blank" class="resource-link" style="color:#fff; background-color:#6B8E23; border-color: #6B8E23; margin-bottom:15px;">📋 填寫 陽光基金會雲嘉中心線上轉介表單</a><br><br>`;
+                }
+
+                resourcesHtml += `<p>1. <strong>安心專線：直撥 1925</strong> (24小時免付費國家級心理諮詢通道)<br>
+                2. <strong>衛生局社區心理衛生中心</strong>：${pTxt}<br>
+                3. <strong>【本院資源】嘉基好消息協談中心</strong>：提供深度的心理關懷與情緒舒緩，電話：(05)276-5041 分機 8585</p></div>`;
+            }
+            if (need === "經濟需求") {
+                resourcesHtml += `<div class="resource-card"><h4>💸 經濟弱勢扶助與特別補助</h4>`;
+                
+                if (cancer === "頭頸癌") {
+                    resourcesHtml += `<p style="background-color: #FFFDF0; border: 2px dashed #6B8E23; padding: 14px; border-radius: 8px; margin-bottom: 15px;">
+                    <strong>🌟 【頭頸癌/口腔癌病友找陽光 - 專業經濟協助】：</strong><br>
+                    針對符合資格之經濟弱勢病友，陽光基金會雲嘉中心提供在地化的專案急難救助金、營養品與醫療交通補助、子女獎助學金等。<br><br>
+                    📞 聯繫諮詢窗口：<strong>(05)228-0300</strong>
+                    <img src="yangsun.jpg" alt="陽光基金會經濟協助海報" class="poster-img">
+                    </p>
+                    <a href="https://forms.gle/kgFvzZQDHHTbSnB39" target="_blank" class="resource-link" style="color:#fff; background-color:#6B8E23; border-color: #6B8E23; margin-bottom:20px;">📋 填寫 陽光基金會雲嘉中心線上轉介表單</a><br><br>`;
+                }
+
+                resourcesHtml += `<p><strong>【重要提醒】</strong>：任何資源皆需經過嚴謹的經濟狀況評估。若面臨中斷 or 困難，請洽 <strong>嘉基社工室 (05)276-5041 分機 7172 梁社工</strong>。以下為官方常態管道：</p>
+                <div style="margin-top:5px; display:flex; flex-direction:column; gap:6px;">
+                    <div>🚗 交通補助：<a href="https://www.ecancer.org.tw/service/resource_grant/xaw3e" target="_blank" class="resource-link">遠地就醫交通補助</a></div>
+                    <div>🍼 營養品補助：<a href="https://www.ecancer.org.tw/service/resource_grant/oral_nutritional_supplements" target="_blank" class="resource-link">弱勢癌友營養品補助</a></div>
+                    <div>🏛️ 政府急難救助：<a href="https://www.gov.tw/News_Content_26_574274" target="_blank" class="resource-link">政府強化社會安全網急難方案</a></div>
+                    <div>🏫 教育部學產基金：<a href="http://edufund.cyut.edu.tw" target="_blank" class="resource-link">急難慰問金網站</a></div>
+                    <div>🎓 獎學金：<a href="https://www.crm.org.tw/class/subsidy/985" target="_blank" class="resource-link">癌症家庭子女獎助學金</a></div>
+                </div></div>`;
+            }
+            if (need === "康復用品") {
+                resourcesHtml += `<div class="resource-card"><h4>💇 康復用品資源與輔具租借導航</h4>
+                <p>癌症康復期間所需之特殊康復用品、傷口醫療耗材、照護特殊輔具等，種類非常廣泛。本院及在地皆設有專業物資與租借諮詢窗口，陪伴病友舒適復健：</p>
+                <p>1. <strong>【本院窗口】</strong>：親洽<strong>門診大樓 2 樓癌症病友服務中心</strong>，現場提供多元康復用品諮詢與實體物資免費租借。<br>
+                2. <strong>【國家長照輔具服務】</strong>：若生活失能需要居家病床、輪椅、氣墊床等長期大型輔具租借補助，請直撥 <strong>1966 長照專線</strong> 預約專人到府鑑定評估。<br>
+                3. <strong>【線上權威查詢平台】</strong>：</p>
+                <a href="https://www.crm.org.tw/sub-category/9/?category=b" target="_blank" class="resource-link">🌐 進入 台灣癌症資源網 - 康復物品與輔具租借專區</a></div>`;
+            }
+            if (need === "長照資源") {
+                resourcesHtml += `<div class="resource-card"><h4>🧓 國家長期照顧服務 (長照 2.0)</h4><p>日常生活失能就醫接送，不限年齡皆可申請：<br>📞 申請專線：<strong>請直撥 1966</strong></p><a href="https://1966.gov.tw/LTC/mp-207.html" target="_blank" class="resource-link">🌐 進入 衛福部長照官網</a></div>`;
+            }
+            if (need === "轉介醫院專業人員") {
+                resourcesHtml += `<div class="resource-card" style="background:#FFFBF0; border: 2px dashed #EEDCA5;"><h4>🧑‍⚕️ 轉介醫院個管師 / 社工師特別窗口</h4><p>若希望個管師 or 社工師主動與您聯繫，請填寫線上單：</p><a href="https://docs.google.com/forms/d/e/1FAIpQLScTMuaMN-m4hTsfRYVHs4Yuf9RWFmJ-k5Y6ls2e1JTbdmhJqQ/viewform?usp=publish-editor" target="_blank" class="resource-link" style="color:#fff; background-color:#6B8E23; border-color: #6B8E23;">📋 填寫 嘉基個管中心線上轉介表單</a></div>`;
+            }
+        });
+
+        document.getElementById('resources-output-list').innerHTML = resourcesHtml;
+        
+        // 🎯 核心更正：按鈕按下去，送出 GAS 後一律改為先跳到「資源結果分頁」(result-tab)
+        switchTab('result-tab');
+    }
+
+    function submitSatisfaction(e) {
+        e.preventDefault();
+        document.getElementById('loading2').style.display = "block";
+
+        const satRes = document.querySelector('input[name="sat_res"]:checked').value;
+        const satOpt = document.querySelector('input[name="sat_opt"]:checked').value;
+        const satAll = document.querySelector('input[name="sat_all"]:checked').value;
+        const satComments = document.getElementById('satComments').value || "無具體建議";
+
+        let finalPayload = Object.assign({}, currentCasePayload, {
+            sat_res: satRes, 
+            sat_opt: satOpt, 
+            sat_all: satAll,
+            sat_comments: satComments
+        });
+
+        fetch(GAS_WEB_APP_URL, {
+            method: "POST",
+            mode: "no-cors",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(finalPayload)
+        }).then(() => {
+            document.getElementById('loading2').style.display = "none";
+            alert("✨ 滿意度與建議回饋成功！感謝您的寶貴意見。");
+            document.getElementById('satForm').reset();
+            document.getElementById('resourceForm').reset();
+            
+            document.getElementById('nav-result-tab').style.display = "none";
+            document.getElementById('nav-sat-tab').style.display = "none";
+            switchTab('client-tab');
+        });
+    }
+</script>
+</body>
+</html>
