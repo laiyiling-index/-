@@ -11,122 +11,141 @@
             font-family: "Helvetica Neue", Arial, "Noto Sans TC", "Microsoft JhengHei", sans-serif;
             background-color: #F7F5F0; /* 日系亞麻米底色 */
             color: #3A3A3A; /* 柔和深灰 */
-            line-height: 1.7; margin: 0; padding: 0;
+            line-height: 1.4; margin: 0; padding: 0;
             font-weight: 700; /* 全域字體加粗，提升長輩與癌友閱讀舒適度 */
+            font-size: 20px; /* 全系統核心字體統一 20px (20字) */
             -webkit-tap-highlight-color: transparent;
         }
         
         /* 響應式主容器 */
         .app-container {
-            max-width: 900px; 
-            margin: 10px auto; 
+            max-width: 950px; 
+            margin: 8px auto; 
             background: #FDFBF7; /* 手作紙張感白 */
-            border-radius: 16px; 
-            box-shadow: 0 8px 30px rgba(107, 142, 35, 0.1); 
+            border-radius: 12px; 
+            box-shadow: 0 4px 20px rgba(107, 142, 35, 0.08); 
             overflow: hidden; 
             border: 2px solid #E3DEC3;
-            border-top: 10px solid #6B8E23; /* 溫暖抹茶綠頂條 */
+            border-top: 8px solid #6B8E23; /* 溫慢網頁頂條 */
         }
         
-        /* 系統頂部橫幅 */
+        /* 系統頂部橫幅 (縮小間距) */
         .app-header { 
             background-color: #6B8E23; /* 抹茶綠 */
-            color: #FDFBF7; padding: 30px 15px; text-align: center;
+            color: #FDFBF7; padding: 18px 15px; text-align: center;
             background-image: radial-gradient(#7A9F33 15%, transparent 16%), radial-gradient(#7A9F33 15%, transparent 16%);
-            background-size: 30px 30px; background-position: 0 0, 15px 15px; /* 日系復古點點紋理 */
+            background-size: 30px 30px; background-position: 0 0, 15px 15px;
         }
-        .app-header h1 { margin: 0; font-size: 24px; font-weight: 900; letter-spacing: 1px; text-shadow: 1px 1px 2px rgba(0,0,0,0.15); }
-        .app-header p { margin: 10px 0 0 0; font-size: 14px; font-weight: 800; opacity: 0.95; }
+        .app-header h1 { margin: 0; font-size: 26px; font-weight: 900; letter-spacing: 1px; text-shadow: 1px 1px 2px rgba(0,0,0,0.15); }
+        .app-header p { margin: 4px 0 0 0; font-size: 16px; font-weight: 800; opacity: 0.95; }
         
         /* 導覽頁籤 (Tabs) */
         .tabs { display: flex; background: #EFECE4; border-bottom: 2px solid #E3DEC3; padding: 0 5px; }
         .tab-btn {
-            flex: 1; padding: 14px 2px; text-align: center; background: none; border: none;
-            font-size: 15px; font-weight: 900; color: #555555; cursor: pointer; transition: all 0.2s;
-            margin: 5px 2px 0 2px; border-radius: 8px 8px 0 0;
+            flex: 1; padding: 10px 2px; text-align: center; background: none; border: none;
+            font-size: 18px; font-weight: 900; color: #555555; cursor: pointer; transition: all 0.2s;
+            margin: 4px 2px 0 2px; border-radius: 6px 6px 0 0;
             white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
         }
-        .tab-btn.active { background: #FDFBF7; color: #6B8E23; border-top: 3px solid #6B8E23; font-size: 16px; }
+        .tab-btn.active { background: #FDFBF7; color: #6B8E23; border-top: 3px solid #6B8E23; font-size: 20px; }
         .tab-btn:disabled { color: #A0A0A0; cursor: not-allowed; }
         
-        /* 頁籤內容主區塊 */
-        .tab-content { padding: 20px 15px; display: none; }
+        /* 頁籤內容主區塊 (內距微調縮小) */
+        .tab-content { padding: 12px 10px; display: none; }
         .tab-content.active { display: block; }
         
-        /* 經典溫慢綠意標題 */
-        h2 { font-size: 19px; color: #4A5D23; border-bottom: 2px dashed #C2CCA3; padding-bottom: 8px; margin-top: 15px; margin-bottom: 20px; font-weight: 900; display: flex; align-items: center; }
-        h2::before { content: "🌱 "; margin-right: 6px; font-size: 17px; }
+        /* 經典標題 (縮小上下外距) */
+        h2 { font-size: 22px; color: #4A5D23; border-bottom: 2px dashed #C2CCA3; padding-bottom: 4px; margin-top: 10px; margin-bottom: 10px; font-weight: 900; display: flex; align-items: center; }
+        h2::before { content: "🌱 "; margin-right: 4px; font-size: 18px; }
         
-        /* AI 語音助理專區樣式 */
+        /* AI 語音助理專區樣式 (緊湊化) */
         .ai-voice-box {
-            background-color: #F0F4EC; border: 2px solid #C2CCA3; border-radius: 12px; padding: 15px; margin-bottom: 20px; text-align: center;
+            background-color: #F0F4EC; border: 2px solid #C2CCA3; border-radius: 10px; padding: 10px; margin-bottom: 12px; text-align: center;
         }
+        .ai-voice-box b { font-size: 21px; } 
         .btn-voice {
-            background-color: #4A5D23; color: white; border: none; padding: 10px 20px; font-size: 15px; font-weight: 900;
-            border-radius: 30px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; transition: all 0.3s;
-            box-shadow: 0 4px 10px rgba(74, 93, 35, 0.2);
+            background-color: #4A5D23; color: white; border: none; padding: 6px 18px; font-size: 19px; font-weight: 900; 
+            border-radius: 20px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; transition: all 0.3s;
+            box-shadow: 0 3px 6px rgba(74, 93, 35, 0.15);
         }
         .btn-voice.recording { background-color: #E53E3E; animation: pulse 1.5s infinite; }
-        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.03); } 100% { transform: scale(1); } }
-        .voice-status { font-size: 13.5px; color: #555; margin-top: 8px; font-weight: 800; min-height: 20px; }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.02); } 100% { transform: scale(1); } }
+        .voice-status { font-size: 15px; color: #444; margin-top: 4px; font-weight: 800; min-height: 18px; } 
 
-        /* 表單與輸入元件 */
-        .form-group { margin-bottom: 20px; width: 100%; }
-        .form-group label { display: block; font-weight: 900; margin-bottom: 8px; color: #4A5D23; font-size: 16px; }
-        .form-group .hint-text { font-size: 13.5px; color: #7F8C8D; font-weight: 800; margin-top: 4px; display: block; }
+        /* 基本資料各表單列 (外距微調縮小) */
+        .form-group { margin-bottom: 10px; width: 100%; }
+        .form-group label { display: block; font-weight: 900; margin-bottom: 4px; color: #4A5D23; font-size: 20px; }
+        .form-group .hint-text { font-size: 14px; color: #7F8C8D; font-weight: 800; margin-top: 2px; display: block; }
         .form-row { display: flex; flex-direction: column; gap: 0; }
         
         input[type="text"], input[type="number"], input[type="tel"], select, textarea {
-            width: 100%; padding: 13px; border: 2px solid #D1CBB3; border-radius: 10px;
-            font-size: 16px; color: #3A3A3A; background-color: #FDFBF7; outline: none; font-weight: 800;
+            width: 100%; padding: 8px 10px; border: 2px solid #D1CBB3; border-radius: 8px;
+            font-size: 20px; color: #3A3A3A; background-color: #FDFBF7; outline: none; font-weight: 800;
             display: block; -webkit-appearance: none;
         }
-        input[type="text"]:focus, input[type="number"]:focus, input[type="tel"]:focus, select:focus, textarea:focus { border-color: #6B8E23; background-color: #FFFFFA; box-shadow: 0 0 0 4px rgba(107, 142, 35, 0.15); }
-        textarea { font-family: inherit; resize: vertical; min-height: 100px; }
+        input[type="text"]:focus, input[type="number"]:focus, input[type="tel"]:focus, select:focus, textarea:focus { border-color: #6B8E23; background-color: #FFFFFA; box-shadow: 0 0 0 3px rgba(107, 142, 35, 0.12); }
+        textarea { font-family: inherit; resize: vertical; min-height: 80px; }
 
-        /* 複選方格與單選格柵 (Grid) */
+        /* 第一至第五部分：複選框與單選框統一固定 20px (內襯與間距微調縮小、不跳行) */
         .checkbox-group {
             display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(135px, 1fr)); 
-            gap: 10px;
-            background: #F4F1E9; padding: 14px; border-radius: 12px; border: 2px solid #E3DEC3;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); 
+            gap: 6px;
+            background: #F4F1E9; padding: 8px; border-radius: 10px; border: 2px solid #E3DEC3;
         }
-        .checkbox-item { display: flex; align-items: center; font-size: 15px; color: #444444; cursor: pointer; font-weight: 800; min-height: 35px; }
-        .checkbox-item input { margin-right: 8px; transform: scale(1.3); accent-color: #6B8E23; cursor: pointer; }
+        .checkbox-item { 
+            display: flex; align-items: center; 
+            font-size: 20px; color: #333333; cursor: pointer; font-weight: 800; min-height: 32px; 
+            white-space: nowrap; /* 全裝置強制不跳行 */
+        }
+        .checkbox-item input { margin-right: 6px; transform: scale(1.3); accent-color: #6B8E23; cursor: pointer; flex-shrink: 0; }
         
-        /* 心情溫度計自適應條目 */
-        .bsrs-tr-item { display: flex; flex-direction: column; padding: 12px 8px; border-bottom: 1px solid #E3DEC3; transition: background-color 0.3s; }
-        .bsrs-tr-item.unselected { background-color: #FFF5F5; border-left: 4px solid #E53E3E; }
-        .bsrs-title-text { font-weight: 900; color: #4A5D23; margin-bottom: 8px; font-size: 15px; }
-        .bsrs-options { display: flex; gap: 5px; flex-wrap: wrap; justify-content: space-between; background: #FDFBF7; padding: 6px 8px; border-radius: 8px; border: 1px solid #EFECE4; }
-        .bsrs-options label { display: flex; align-items: center; font-size: 15px; font-weight: 800; margin: 0; cursor: pointer; padding: 6px 4px; }
-        .bsrs-options input { margin-right: 4px; transform: scale(1.3); accent-color: #6B8E23; }
+        /* 第五部分樣式與前四部分完全同級且統一 20px */
+        #needs-group {
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); 
+            gap: 6px;
+            background: #F4F1E9; padding: 8px; border-radius: 10px; border: 2px solid #E3DEC3;
+        }
+        #needs-group .checkbox-item {
+            font-size: 20px; /* 確切統一為 20px */
+            color: #333333; cursor: pointer; font-weight: 800; min-height: 32px;
+            white-space: nowrap; /* 全裝置強制不跳行 */
+        }
+        #needs-group input { margin-right: 6px; transform: scale(1.3); accent-color: #6B8E23; cursor: pointer; flex-shrink: 0; }
+
+        /* 第四部分：心情溫度計條目間距縮小與 20px 統一 */
+        .bsrs-container-box { border: 2px solid #E3DEC3; border-radius: 10px; overflow: hidden; margin-bottom: 15px; }
+        .bsrs-tr-item { display: flex; flex-direction: column; padding: 6px 6px; border-bottom: 1px solid #E3DEC3; transition: background-color 0.3s; }
+        .bsrs-tr-item.unselected { background-color: #FFF5F5; border-left: 6px solid #E53E3E; }
+        .bsrs-title-text { font-weight: 900; color: #4A5D23; margin-bottom: 4px; font-size: 20px; } 
+        .bsrs-options { display: flex; gap: 4px; flex-wrap: nowrap; justify-content: space-between; background: #FDFBF7; padding: 4px 6px; border-radius: 6px; border: 1px solid #EFECE4; }
+        .bsrs-options label { display: flex; align-items: center; font-size: 20px; font-weight: 800; margin: 0; cursor: pointer; padding: 4px 2px; white-space: nowrap; } 
+        .bsrs-options input { margin-right: 4px; transform: scale(1.3); accent-color: #6B8E23; flex-shrink: 0; }
         
-        /* 按鈕樣式 */
+        /* 送出按鈕樣式 (縮減高度) */
         .btn-submit {
             display: block; width: 100%; background-color: #6B8E23; color: white; border: none;
-            padding: 16px; font-size: 18px; font-weight: 900; border-radius: 10px; cursor: pointer;
-            transition: all 0.3s; margin-top: 20px; box-shadow: 0 4px 12px rgba(107, 142, 35, 0.2);
+            padding: 10px; font-size: 20px; font-weight: 900; border-radius: 8px; cursor: pointer;
+            transition: all 0.3s; margin-top: 12px; box-shadow: 0 4px 10px rgba(107, 142, 35, 0.15);
             border-bottom: 4px solid #4A5D23; text-align: center;
         }
         .btn-submit:active { transform: translateY(2px); border-bottom-width: 2px; }
         
         .btn-clear {
             display: block; width: 100%; background-color: #7F8C8D; color: white; border: none;
-            padding: 12px; font-size: 16px; font-weight: 900; border-radius: 10px; cursor: pointer;
-            transition: all 0.2s; margin-top: 10px; text-align: center; border-bottom: 4px solid #5D6D7E;
+            padding: 8px; font-size: 18px; font-weight: 900; border-radius: 8px; cursor: pointer;
+            transition: all 0.2s; margin-top: 6px; text-align: center; border-bottom: 4px solid #5D6D7E;
         }
         .btn-clear:active { transform: translateY(2px); border-bottom-width: 2px; }
 
-        /* 導航結果區塊面板 */
-        .result-section { background: #F1F4E8; border: 2px solid #D2DCB4; border-radius: 12px; padding: 16px; margin-bottom: 20px; }
-        .result-section h3 { margin-top: 0; color: #3D4F1D; font-size: 17px; display: flex; align-items: center; gap: 8px; font-weight: 900; }
-        
-        /* 獨立色塊化資源卡片 */
-        .resource-card { background: #FDFBF7; border: 2px solid #E3DEC3; border-radius: 12px; padding: 16px; margin-bottom: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
-        .resource-card h4 { margin: 0 0 10px 0; color: #3A4F1D; font-size: 17px; font-weight: 900; display: flex; align-items: center; }
-        .resource-card h4::before { content: "🍀"; margin-right: 6px; }
-        .resource-card p { margin: 0 0 12px 0; font-size: 15px; color: #3A3A3A; font-weight: 800; }
+        /* 導航結果與卡片樣式 */
+        .result-section { background: #F1F4E8; border: 2px solid #D2DCB4; border-radius: 10px; padding: 12px; margin-bottom: 12px; }
+        .result-section h3 { margin-top: 0; color: #3D4F1D; font-size: 20px; display: flex; align-items: center; gap: 6px; font-weight: 900; }
+        .resource-card { background: #FDFBF7; border: 2px solid #E3DEC3; border-radius: 10px; padding: 12px; margin-bottom: 10px; box-shadow: 0 3px 8px rgba(0,0,0,0.01); }
+        .resource-card h4 { margin: 0 0 6px 0; color: #3A4F1D; font-size: 20px; font-weight: 900; display: flex; align-items: center; }
+        .resource-card h4::before { content: "🍀"; margin-right: 4px; }
+        .resource-card p { margin: 0 0 6px 0; font-size: 19px; color: #3A3A3A; font-weight: 800; }
         
         /* 專屬資源獨立色塊配色 */
         .block-med { background-color: #F0F7F4; border-left: 6px solid #6B8E23; border-color: #D6E8D8; }
@@ -139,50 +158,58 @@
 
         /* 外連連結按鈕 */
         .resource-link {
-            display: block; text-align: center; background-color: #F6F3E6; color: #5B7D1A; padding: 12px 14px;
-            border-radius: 8px; text-decoration: none; font-size: 15px; font-weight: 900; transition: all 0.2s; border: 2px solid #C2CCA3; margin-bottom: 8px;
+            display: block; text-align: center; background-color: #F6F3E6; color: #5B7D1A; padding: 8px 12px;
+            border-radius: 6px; text-decoration: none; font-size: 18px; font-weight: 900; transition: all 0.2s; border: 2px solid #C2CCA3; margin-bottom: 6px;
         }
         .resource-link:hover, .resource-link:active { background-color: #6B8E23; color: white; border-color: #6B8E23; }
         
         /* 圖片與動態 QR 碼自適應 */
-        .qr-container { background-color: #FFF; border: 2px dashed #6B8E23; padding: 15px; border-radius: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; max-width: 100%; margin: 15px auto; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
-        .qr-img { width: 140px; height: 140px; display: block; margin-bottom: 8px; }
-        .qr-text { font-size: 13px; color: #555; text-align: center; font-weight: bold; }
+        .qr-container { background-color: #FFF; border: 2px dashed #6B8E23; padding: 10px; border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; max-width: 100%; margin: 10px auto; box-shadow: 0 3px 8px rgba(0,0,0,0.04); }
+        .qr-img { width: 130px; height: 130px; display: block; margin-bottom: 4px; }
+        .qr-text { font-size: 14px; color: #555; text-align: center; font-weight: bold; }
 
         /* 高風險警示框 */
-        .alert-box { background-color: #FFF0F5; border: 2px dashed #E53E3E; border-left: 6px solid #E53E3E; color: #742A2A; padding: 16px; border-radius: 10px; margin-bottom: 20px; font-size: 15px; font-weight: 800; }
+        .alert-box { background-color: #FFF0F5; border: 2px dashed #E53E3E; border-left: 6px solid #E53E3E; color: #742A2A; padding: 12px; border-radius: 8px; margin-bottom: 12px; font-size: 19px; font-weight: 800; }
         .alert-box a { color: #E53E3E; font-weight: 900; text-decoration: underline; }
         
         /* 滿意度調查獨立卡片 */
-        .rating-block-item { background-color: #F4F6F0; border: 2px solid #E3DEC3; border-radius: 12px; padding: 15px; margin-bottom: 14px; }
+        .rating-block-item { background-color: #F4F6F0; border: 2px solid #E3DEC3; border-radius: 10px; padding: 12px; margin-bottom: 10px; }
         .rating-block-item:nth-child(1) { background-color: #F4F7FC; border-left: 6px solid #4A90E2; border-color: #D3E2F4; }
         .rating-block-item:nth-child(2) { background-color: #FFFDF0; border-left: 6px solid #D4A373; border-color: #F7EBC6; }
         .rating-block-item:nth-child(3) { background-color: #F0F7F4; border-left: 6px solid #6B8E23; border-color: #D6E8D8; }
-        .rating-title { font-size: 15px; font-weight: 900; color: #2D3748; margin-bottom: 10px; }
-        .rating-options { display: flex; gap: 8px; font-size: 15px; font-weight: 800; align-items: center; flex-wrap: wrap; justify-content: space-between; }
-        .rating-options label { display: flex; align-items: center; cursor: pointer; margin: 0; padding: 6px 4px; }
-        .rating-options input { transform: scale(1.3); margin-right: 6px; accent-color: #6B8E23; }
+        .rating-title { font-size: 20px; font-weight: 900; color: #2D3748; margin-bottom: 6px; } 
+        .rating-options { display: flex; gap: 6px; font-size: 20px; font-weight: 800; align-items: center; flex-wrap: nowrap; justify-content: space-between; } 
+        .rating-options label { display: flex; align-items: center; cursor: pointer; margin: 0; padding: 4px 2px; white-space: nowrap; }
+        .rating-options input { transform: scale(1.3); margin-right: 4px; accent-color: #6B8E23; flex-shrink: 0; }
         
-        .loading-text { color: #6B8E23; font-weight: 900; display: none; margin-top: 15px; text-align: center; font-size: 16px; }
-        .warning-text { background-color: #FFFDF0; border: 2px solid #EEDCA5; border-left: 6px solid #DD6B20; color: #692411; padding: 12px; font-size: 14px; border-radius: 8px; margin-bottom: 15px; font-weight: 800; line-height: 1.5; }
+        .loading-text { color: #6B8E23; font-weight: 900; display: none; margin-top: 10px; text-align: center; font-size: 18px; }
+        .warning-text { background-color: #FFFDF0; border: 2px solid #EEDCA5; border-left: 6px solid #DD6B20; color: #692411; padding: 8px; font-size: 15px; border-radius: 6px; margin-bottom: 10px; font-weight: 800; line-height: 1.4; }
 
-        /* 平板與電腦大螢幕最佳化 (RWD) */
-        @media (min-width: 650px) {
-            .app-container { margin: 30px auto; }
-            .app-header { padding: 40px 25px; }
+        /* 💻 📱【跨裝置最佳化自適應斷點（RWD）】20px 不換行平鋪排列設定 */
+        @media (min-width: 768px) {
+            .app-container { margin: 15px auto; }
+            .app-header { padding: 22px 20px; }
             .app-header h1 { font-size: 30px; }
-            .tab-btn { font-size: 16px; padding: 14px 10px; }
-            .tab-btn.active { font-size: 18px; }
-            .tab-content { padding: 35px 30px; }
-            .form-row { flex-direction: row; gap: 20px; }
-            .checkbox-group { grid-template-columns: repeat(auto-fill, minmax(175px, 1fr)); gap: 14px; }
-            .bsrs-tr-item { flex-direction: row; align-items: center; justify-content: space-between; }
-            .bsrs-title-text { margin-bottom: 0; width: 45%; }
-            .bsrs-options { width: 50%; justify-content: flex-start; gap: 14px; border: none; padding: 0; background: transparent; }
-            .resource-link { display: inline-block; width: auto; margin-right: 10px; margin-bottom: 10px; padding: 12px 20px; }
-            .rating-options { justify-content: flex-start; gap: 20px; }
-            .result-section { padding: 22px; }
-            .resource-card { padding: 20px; }
+            .tab-btn { font-size: 19px; padding: 12px 6px; }
+            .tab-btn.active { font-size: 21px; }
+            .tab-content { padding: 15px 20px; }
+            .form-row { flex-direction: row; gap: 15px; }
+            
+            /* 第一部分至第五部分：大螢幕橫向平鋪網格，文字絕對不折行 */
+            .checkbox-group { grid-template-columns: repeat(4, 1fr); gap: 10px; }
+            #welfare-group { grid-template-columns: repeat(4, 1fr); }
+            #treatment-group { grid-template-columns: repeat(5, 1fr); } 
+            #needs-group { grid-template-columns: repeat(4, 1fr); gap: 10px; }
+            
+            /* 心情溫度計：大螢幕橫向融合成完美一排 (左題目右選項) */
+            .bsrs-tr-item { flex-direction: row; align-items: center; justify-content: space-between; gap: 12px; }
+            .bsrs-title-text { margin-bottom: 0; width: 45%; flex-shrink: 0; white-space: nowrap; }
+            .bsrs-options { width: 53%; justify-content: flex-end; gap: 10px; border: none; padding: 0; background: transparent; flex-shrink: 0; flex-wrap: nowrap; }
+            
+            .resource-link { display: inline-block; width: auto; margin-right: 8px; margin-bottom: 8px; padding: 8px 16px; }
+            .rating-options { justify-content: flex-start; gap: 20px; flex-wrap: nowrap; }
+            .result-section { padding: 15px; }
+            .resource-card { padding: 15px; }
         }
     </style>
 </head>
@@ -191,7 +218,7 @@
 <div class="app-container">
     <div class="app-header">
         <h1>癌症導航與社會資源智慧系統</h1>
-        <p>箇中關懷 · 資源隨行 | 專為癌友設計的自主資源導引平台</p>
+        <p>專為癌友設計的自主資源導引平台</p>
     </div>
 
     <div class="tabs">
@@ -203,7 +230,7 @@
     <div id="client-tab" class="tab-content active">
         
         <div class="ai-voice-box">
-            <span style="font-size:16px; color:#4A5D23; display:block; margin-bottom:8px;">🎙️ <b>長輩/癌友友善：AI 語音智慧填表助理</b></span>
+            <span style="color:#4A5D23; display:block; margin-bottom:8px;">🎙️ <b>長輩/癌友友善：AI 語音智慧填表助理</b></span>
             <button type="button" id="voice-start-btn" class="btn-voice" onclick="toggleVoiceRecognition()">
                 <span>🎤 點擊開始說話</span>
             </button>
@@ -295,7 +322,7 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="pPhone">聯絡電話 <span style="font-size:13px; color:#6B8E23;">(選填 Optional)</span></label>
+                    <label for="pPhone">聯絡電話 <span style="font-size:16px; color:#6B8E23;">(選填)</span></label>
                     <input type="tel" id="pPhone" placeholder="例：0912345678">
                     <span class="hint-text">💡 若希望個管師/社工師主動致電關懷，請留下電話。</span>
                 </div>
@@ -340,31 +367,31 @@
                 </div>
             </div>
 
-            <h2>4. 心情溫度計 (BSRS-5 簡式健康量表評估) <span style="font-size:14px; color:#E53E3E;">*必填項目</span></h2>
-            <div style="border: 2px solid #E3DEC3; border-radius: 12px; overflow: hidden; margin-bottom: 25px;" id="bsrs-container">
+            <h2>4. 心情溫度計 (BSRS-5 簡式健康量表評估) <span style="font-size:16px; color:#E53E3E;">*必填項目</span></h2>
+            <div class="bsrs-container-box" id="bsrs-container">
                 <div class="bsrs-tr-item" id="bsrs-q1">
                     <div class="bsrs-title-text">1. 感覺緊張不安</div>
-                    <div class="bsrs-options"><label><input type="radio" name="bsrs1" value="0"> 0(無)</label><label><input type="radio" name="bsrs1" value="1"> 1(輕)</label><label><input type="radio" name="bsrs1" value="2"> 2(中)</label><label><input type="radio" name="bsrs1" value="3"> 3(重)</label><label><input type="radio" name="bsrs1" value="4"> 4(極重)</label></div>
+                    <div class="bsrs-options"><label><input type="radio" name="bsrs1" value="0"> 0(無)</label><label><input type="radio" name="bsrs1" value="1"> 1(輕)</label><label><input type="radio" name="bsrs1" value="2"> 2(微)</label><label><input type="radio" name="bsrs1" value="3"> 3(重)</label><label><input type="radio" name="bsrs1" value="4"> 4(極重)</label></div>
                 </div>
                 <div class="bsrs-tr-item" id="bsrs-q2">
                     <div class="bsrs-title-text">2. 覺得容易苦惱或動怒</div>
-                    <div class="bsrs-options"><label><input type="radio" name="bsrs2" value="0"> 0(無)</label><label><input type="radio" name="bsrs2" value="1"> 1(輕)</label><label><input type="radio" name="bsrs2" value="2"> 2(中)</label><label><input type="radio" name="bsrs2" value="3"> 3(重)</label><label><input type="radio" name="bsrs2" value="4"> 4(極重)</label></div>
+                    <div class="bsrs-options"><label><input type="radio" name="bsrs2" value="0"> 0(無)</label><label><input type="radio" name="bsrs2" value="1"> 1(輕)</label><label><input type="radio" name="bsrs2" value="2"> 2(微)</label><label><input type="radio" name="bsrs2" value="3"> 3(重)</label><label><input type="radio" name="bsrs2" value="4"> 4(極重)</label></div>
                 </div>
                 <div class="bsrs-tr-item" id="bsrs-q3">
                     <div class="bsrs-title-text">3. 感覺憂鬱、心情低落</div>
-                    <div class="bsrs-options"><label><input type="radio" name="bsrs3" value="0"> 0(無)</label><label><input type="radio" name="bsrs3" value="1"> 1(輕)</label><label><input type="radio" name="bsrs3" value="2"> 2(中)</label><label><input type="radio" name="bsrs3" value="3"> 3(重)</label><label><input type="radio" name="bsrs3" value="4"> 4(極重)</label></div>
+                    <div class="bsrs-options"><label><input type="radio" name="bsrs3" value="0"> 0(無)</label><label><input type="radio" name="bsrs3" value="1"> 1(輕)</label><label><input type="radio" name="bsrs3" value="2"> 2(微)</label><label><input type="radio" name="bsrs3" value="3"> 3(重)</label><label><input type="radio" name="bsrs3" value="4"> 4(極重)</label></div>
                 </div>
                 <div class="bsrs-tr-item" id="bsrs-q4">
                     <div class="bsrs-title-text">4. 覺得比不上別人</div>
-                    <div class="bsrs-options"><label><input type="radio" name="bsrs4" value="0"> 0(無)</label><label><input type="radio" name="bsrs4" value="1"> 1(輕)</label><label><input type="radio" name="bsrs4" value="2"> 2(中)</label><label><input type="radio" name="bsrs4" value="3"> 3(重)</label><label><input type="radio" name="bsrs4" value="4"> 4(極重)</label></div>
+                    <div class="bsrs-options"><label><input type="radio" name="bsrs4" value="0"> 0(無)</label><label><input type="radio" name="bsrs4" value="1"> 1(輕)</label><label><input type="radio" name="bsrs4" value="2"> 2(微)</label><label><input type="radio" name="bsrs4" value="3"> 3(重)</label><label><input type="radio" name="bsrs4" value="4"> 4(極重)</label></div>
                 </div>
                 <div class="bsrs-tr-item" id="bsrs-q5">
                     <div class="bsrs-title-text">5. 睡眠困難，如不易入睡等</div>
-                    <div class="bsrs-options"><label><input type="radio" name="bsrs5" value="0"> 0(無)</label><label><input type="radio" name="bsrs5" value="1"> 1(輕)</label><label><input type="radio" name="bsrs5" value="2"> 2(中)</label><label><input type="radio" name="bsrs5" value="3"> 3(重)</label><label><input type="radio" name="bsrs5" value="4"> 4(極重)</label></div>
+                    <div class="bsrs-options"><label><input type="radio" name="bsrs5" value="0"> 0(無)</label><label><input type="radio" name="bsrs5" value="1"> 1(輕)</label><label><input type="radio" name="bsrs5" value="2"> 2(微)</label><label><input type="radio" name="bsrs5" value="3"> 3(重)</label><label><input type="radio" name="bsrs5" value="4"> 4(極重)</label></div>
                 </div>
                 <div class="bsrs-tr-item" style="background:#FFF5F5;" id="bsrs-q6">
                     <div class="bsrs-title-text" style="color:#c53030;">★ 附加題：近一星期內，您有自殺想法嗎？</div>
-                    <div class="bsrs-options" style="background:#FFF5F5;"><label><input type="radio" name="bsrs_suicide" value="0"> 0(無)</label><label><input type="radio" name="bsrs_suicide" value="1"> 1(輕)</label><label><input type="radio" name="bsrs_suicide" value="2"> 2(中)</label><label><input type="radio" name="bsrs_suicide" value="3"> 3(重)</label><label><input type="radio" name="bsrs_suicide" value="4"> 4(極重)</label></div>
+                    <div class="bsrs-options" style="background:#FFF5F5;"><label><input type="radio" name="bsrs_suicide" value="0"> 0(無)</label><label><input type="radio" name="bsrs_suicide" value="1"> 1(輕)</label><label><input type="radio" name="bsrs_suicide" value="2"> 2(微)</label><label><input type="radio" name="bsrs_suicide" value="3"> 3(重)</label><label><input type="radio" name="bsrs_suicide" value="4"> 4(極重)</label></div>
                 </div>
             </div>
 
@@ -395,7 +422,7 @@
 
         <div class="result-section">
             <h3 id="user-welcome-title">✨ 專屬資源導航結果</h3>
-            <p id="user-profile-summary" style="font-size:16px; color:#2d3748; margin-top:5px;"></p>
+            <p id="user-profile-summary" style="font-size:20px; color:#2d3748; margin-top:5px; line-height: 1.5;"></p>
         </div>
 
         <div class="result-section" id="dynamic-welfare-section" style="background:#FDFBF7; border-color:#E3DEC3; display:none;">
@@ -406,7 +433,7 @@
 
         <div id="resources-output-list"></div>
         
-        <button class="btn-submit" style="background-color:#6B8E23; border-bottom-color: #4A5D23; margin-top: 40px;" onclick="switchTab('satisfaction-tab')">👉 我已看完資源，前往填寫回饋</button>
+        <button class="btn-submit" style="background-color:#6B8E23; border-bottom-color: #4A5D23; margin-top: 25px;" onclick="switchTab('satisfaction-tab')">👉 我已看完資源，前往填寫回饋</button>
         <button class="btn-clear" onclick="clearMyStorageData()">❌ 清除本次查詢紀錄 (保護隱私)</button>
     </div>
 
@@ -414,7 +441,7 @@
         <h2>6. 系統使用滿意度回饋</h2>
         <form id="satForm" onsubmit="submitSatisfaction(event)">
             <div class="rating-block-item">
-                <div class="rating-title">1. 您字典對於『資源提供的豐富性』是否滿意？</div>
+                <div class="rating-title">1. 您對於『資源提供的豐富性』是否滿意？</div>
                 <div class="rating-options">
                     <label><input type="radio" name="sat_res" value="1" required> 1分</label>
                     <label><input type="radio" name="sat_res" value="2"> 2分</label>
@@ -445,8 +472,8 @@
             </div>
             
             <div class="rating-block-item" style="background-color: #FDFBF7; border-left: 6px solid #7F8C8D; border-color: #E2E8F0;">
-                <label style="color:#4A5D23; font-size: 16px;">4. 對於本系統的建議與回饋 (選填)</label>
-                <textarea id="satComments" placeholder="歡迎寫下您的寶貴意見或需要我們加強的地方，幫助我們做得更好..." style="margin-top: 10px;"></textarea>
+                <label style="color:#4A5D23; font-size: 20px;">4. 對於本系統的建議與回饋 (選填)</label>
+                <textarea id="satComments" placeholder="歡迎寫下您的寶貴意見或需要我們加強的地方，幫助我們做得更好..." style="margin-top: 6px; font-size:20px;"></textarea>
             </div>
             
             <button type="submit" class="btn-submit" style="background-color:#6B8E23; border-bottom-color: #4A5D23;">💾 送出滿意度並完成登記</button>
@@ -462,7 +489,6 @@
     let recognition = null;
     let isRecording = false;
 
-    // 智慧還原
     window.onload = function() {
         const savedString = localStorage.getItem('cancer_app_data');
         if (savedString) {
@@ -481,23 +507,22 @@
                     localStorage.removeItem('cancer_app_data');
                 }
             } catch (e) {
-                console.error("localStorage 讀取失敗：", e);
+                console.error(e);
             }
         }
         initVoiceRecognition();
     };
 
-    // 🖥️ Web Speech API 語音辨識初始化
     function initVoiceRecognition() {
         const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
         if (!SpeechRecognition) {
-            document.getElementById('voice-status-msg').innerText = "📢 本瀏覽器不支援語音辨識功能，請使用 Chrome 或 Safari 開啟以體驗語音智慧填表。";
+            document.getElementById('voice-status-msg').innerText = "📢 本瀏覽器不支援語音辨識功能，請使用 Chrome 或 Safari 開啟。";
             document.getElementById('voice-start-btn').disabled = true;
             return;
         }
         recognition = new SpeechRecognition();
         recognition.continuous = false;
-        recognition.lang = 'zh-TW'; // 設為台灣中文，同時能精準辨識常規台語發音
+        recognition.lang = 'zh-TW';
         recognition.interimResults = false;
 
         recognition.onstart = function() {
@@ -505,7 +530,7 @@
             const btn = document.getElementById('voice-start-btn');
             btn.classList.add('recording');
             btn.innerHTML = "🛑 正在傾聽中...請說話";
-            document.getElementById('voice-status-msg').innerText = "🔊 請大聲說出您的居住縣市、癌別與身分需求，說完後請稍等或再次點擊按鈕...";
+            document.getElementById('voice-status-msg').innerText = "🔊 請大聲說出您的狀況...";
         };
 
         recognition.onend = function() {
@@ -515,70 +540,53 @@
             btn.innerHTML = "🎤 點擊開始說話";
         };
 
-        recognition.onerror = function(event) {
-            console.error("語音辨識錯誤: ", event.error);
-            document.getElementById('voice-status-msg').innerText = "❌ 語音辨識失敗（原因：" + event.error + "），請再試一次。";
+        recognition.onerror = function() {
+            document.getElementById('voice-status-msg').innerText = "❌ 語音辨識失敗，請再試一次。";
         };
 
         recognition.onresult = function(event) {
             const transcript = event.results[0][0].transcript;
-            document.getElementById('voice-status-msg').innerHTML = `🔹 <b>辨識結果：</b>「${transcript}」<br><span style='color:#6B8E23;'>🤖 正在委託開源大模型進行語意拆解與自動填表...</span>`;
-            
-            // 呼叫語意分析核心
+            document.getElementById('voice-status-msg').innerHTML = `🔹 <b>辨識結果：</b>「${transcript}」<br><span style='color:#6B8E23;'>🤖 正在進行語意解析與表單預填...</span>`;
             parseSpeechWithAI(transcript);
         };
     }
 
     function toggleVoiceRecognition() {
         if (!recognition) return;
-        if (isRecording) {
-            recognition.stop();
-        } else {
-            recognition.start();
-        }
+        if (isRecording) recognition.stop();
+        else recognition.start();
     }
 
-    // 🤖 本地語意模擬匹配（若您在競賽中正式導入 Llama 3 API，可直接在此呼叫 API 回傳 JSON 填表）
     function parseSpeechWithAI(text) {
-        // 以下為高精確度的前端實體關鍵字規則匹配（可作為 Llama 3 斷網時的完美在地備援）
         setTimeout(() => {
-            // 縣市匹配
             if (text.includes("嘉義市")) document.getElementById('pCounty').value = "嘉義市";
-            else if (text.includes("嘉義") || text.includes("嘉義縣")) document.getElementById('pCounty').value = "嘉義縣";
+            else if (text.includes("嘉義")) document.getElementById('pCounty').value = "嘉義縣";
             else if (text.includes("雲林")) document.getElementById('pCounty').value = "雲林縣";
             else if (text.includes("台南")) document.getElementById('pCounty').value = "台南市";
             else if (text.includes("彰化")) document.getElementById('pCounty').value = "彰化縣";
             else if (text.includes("高雄")) document.getElementById('pCounty').value = "高雄市";
 
-            // 癌別匹配
             if (text.includes("口腔") || text.includes("頭頸")) document.getElementById('pCancerType').value = "頭頸癌(口腔癌)";
             else if (text.includes("肺")) document.getElementById('pCancerType').value = "肺癌";
             else if (text.includes("乳")) document.getElementById('pCancerType').value = "乳癌";
-            else if (text.includes("大腸") || text.includes("直腸")) document.getElementById('pCancerType').value = "大腸直腸癌";
-            else if (text.includes("肝")) document.getElementById('pCancerType').value = "肝癌";
+            else if (text.includes("大腸") || text.includes("直職")) document.getElementById('pCancerType').value = "大腸直腸癌";
 
-            // 福利身分複選匹配
             const welfareCheckboxes = document.querySelectorAll('input[name="welfare"]');
             welfareCheckboxes.forEach(cb => {
                 if (text.includes("勞保") && cb.value === "勞保") cb.checked = true;
                 if (text.includes("農保") && cb.value === "農保") cb.checked = true;
                 if (text.includes("漁保") && cb.value === "漁保") cb.checked = true;
                 if (text.includes("低收") && cb.value === "低收") cb.checked = true;
-                if (text.includes("中低收") && cb.value === "中低收") cb.checked = true;
-                if (text.includes("重大傷病") && cb.value === "重大傷病") cb.checked = true;
             });
 
-            // 需求複選匹配
             const needsCheckboxes = document.querySelectorAll('input[name="needs"]');
             needsCheckboxes.forEach(cb => {
-                if ((text.includes("錢") || text.includes("補助") || text.includes("經濟")) && cb.value === "經濟需求") cb.checked = true;
-                if ((text.includes("吃") || text.includes("營養")) && cb.value === "營養資源") cb.checked = true;
-                if ((text.includes("長照") || text.includes("照顧")) && cb.value === "長照資源") cb.checked = true;
-                if ((text.includes("心理") || text.includes("壓力")) && cb.value === "心理支持") cb.checked = true;
+                if ((text.includes("補助") || text.includes("經濟")) && cb.value === "經濟需求") cb.checked = true;
+                if (text.includes("營養") && cb.value === "營養資源") cb.checked = true;
             });
 
             calculateAge();
-            document.getElementById('voice-status-msg').innerHTML = `🎯 <b>AI 語意媒合成功！</b> 已為您自動勾選相對應欄位，請繼續填寫下方『心情溫度計』完成評估。`;
+            document.getElementById('voice-status-msg').innerHTML = `🎯 <b>語意媒合成功！</b>已自動填寫相對應欄位。`;
         }, 1000);
     }
 
@@ -617,36 +625,23 @@
 
     function processData(e) {
         e.preventDefault();
-        
-        // 清除上一次的未填紅框視覺效果
         document.querySelectorAll('.bsrs-tr-item').forEach(el => el.classList.remove('unselected'));
 
-        // 🎯 核心防呆：檢查心情溫度計必填項目
         let bsrsScore = 0;
         let missingQ = [];
 
         for (let i = 1; i <= 5; i++) {
             const selectedOpt = document.querySelector(`input[name="bsrs${i}"]:checked`);
-            if (!selectedOpt) {
-                missingQ.push({ num: i, id: `bsrs-q${i}` });
-            } else {
-                bsrsScore += parseInt(selectedOpt.value);
-            }
+            if (!selectedOpt) missingQ.push({ num: i, id: `bsrs-q${i}` });
+            else bsrsScore += parseInt(selectedOpt.value);
         }
         
         const selectedSuicide = document.querySelector('input[name="bsrs_suicide"]:checked');
-        if (!selectedSuicide) {
-            missingQ.push({ num: "附加題", id: "bsrs-q6" });
-        }
+        if (!selectedSuicide) missingQ.push({ num: "附加題", id: "bsrs-q6" });
 
-        // 若有任何一題漏填，觸發友善阻擋與定位
         if (missingQ.length > 0) {
-            missingQ.forEach(q => {
-                document.getElementById(q.id).classList.add('unselected');
-            });
-            alert("⚠️ 請完整填寫『4. 心情溫度計』的所有評估題目（共5題+1題附加題），這對評估您的心理關懷需求非常重要。");
-            
-            // 自動平滑滾動到第一個漏填的題目位置
+            missingQ.forEach(q => document.getElementById(q.id).classList.add('unselected'));
+            alert("⚠️ 請完整填寫『4. 心情溫度計』的所有評估題目。");
             document.getElementById(missingQ[0].id).scrollIntoView({ behavior: 'smooth', block: 'center' });
             return;
         }
@@ -676,14 +671,9 @@
         };
 
         try {
-            const storageData = {
-                timestamp: new Date().getTime(),
-                payload: currentCasePayload
-            };
+            const storageData = { timestamp: new Date().getTime(), payload: currentCasePayload };
             localStorage.setItem('cancer_app_data', JSON.stringify(storageData));
-        } catch(err) {
-            console.error("寫入 localStorage 失敗", err);
-        }
+        } catch(err) { console.error(err); }
 
         renderResourceResults();
     }
@@ -704,18 +694,16 @@
 
         let dynamicWelfareHtml = "";
         
-        // 勞保身分
         if (welfaresArr.includes("勞保")) {
             dynamicWelfareHtml += `<div class='resource-card block-med'>
                 <h4>💼 勞工保險 (勞保) 身分專屬法定權益</h4>
-                <p><strong>1. 傷病給付：</strong>因傷病住院無法工作而中斷收入，自住院第 4 天起可請領。普通傷病給付為平均月投保薪資的半薪（50%）；職災傷病給付前半年為 70%，之後降為 50%。</p>
+                <p><strong>1. 傷病給付：</strong>因傷病住院無法工作而中斷收入，自住院第 4 天起可請領。普通傷病給付為平均月投投保薪資的半薪（50%）；職災傷病給付前半年為 70%，之後降為 50%。</p>
                 <p><strong>2. 勞保失能給付：</strong>若因傷病治療後導致永久失能，符合條件者可依審定等級與標準申請「失能一次金」或按月領取「失能年金」。</p>
                 <p><strong>3. 死亡給付：</strong>被保險人不幸身故時，遺屬可請領「喪葬津貼」，並依條件申領「遺屬年金」或「遺屬一次金」。</p>
                 <p><strong>📋 相關福利辦理方式：</strong>請備妥申請書件後，交由您目前加保的<strong>「公司人資/總務」</strong>或<strong>「職業工會」</strong>蓋章確認，再由投保單位向勞保局提出申請。</p>
             </div>`;
         }
 
-        // 農保身分
         if (welfaresArr.includes("農保")) {
             dynamicWelfareHtml += `<div class='resource-card block-nut'>
                 <h4>🧑‍🌾 備耕農民保險 (農保) 身分專屬法定權益</h4>
@@ -725,7 +713,6 @@
             </div>`;
         }
 
-        // 漁保身分
         if (welfaresArr.includes("漁保")) {
             dynamicWelfareHtml += `<div class='resource-card block-psy'>
                 <h4>⚓ 漁會甲類勞保 (漁保) 身分專屬法定權益</h4>
@@ -735,7 +722,6 @@
             </div>`;
         }
 
-        // 低收/中低收福利條件
         if (welfaresArr.includes("低收") || welfaresArr.includes("中低收")) {
             dynamicWelfareHtml += `<div class='resource-card block-eco'>
                 <h4>💰 經濟扶助聯動：低收/中低收入戶專屬</h4>
@@ -746,20 +732,12 @@
         if (welfaresArr.includes("重大傷病")) {
             dynamicWelfareHtml += `<div class='resource-card block-med'><h4>🏥 健保權益聯動：重大傷病免部分負擔</h4><p>癌症核定重大傷病後，<strong>「該癌別相關看診與住院，均可免除 10% 的健保部分負擔費用」</strong>，就醫時請主動出示健保卡。</p></div>`;
         }
-        if (welfaresArr.includes("外籍配偶")) {
-            dynamicWelfareHtml += `<div class='resource-card block-ref'>
-                <h4>🌏 跨國關懷聯動：新住民家庭服務中心</h4>
-                <p>各縣市均設有專責新住民服務中心，本系統已動態聯動您在地與鄰近之專業窗口：<br>
-                - 嘉義市：(05)231-0445 | 嘉義縣：(05)206-6096 (山線) / (05)370-0760 (海線)</p>
-            </div>`;
-        }
         
         if(dynamicWelfareHtml !== "") {
             document.getElementById('dynamic-welfare-content').innerHTML = dynamicWelfareHtml;
             document.getElementById('dynamic-welfare-section').style.display = "block";
         } else { document.getElementById('dynamic-welfare-section').style.display = "none"; }
 
-        // 動態匹配最核心之 8 大類社會與官方資源清單
         let resourcesHtml = "<h2>6. 動態媒合之可信任官方資源清單</h2>";
         if (needsArr.length === 0) needsArr = ["醫療資訊", "治療副作用", "營養資源", "心理支持", "經濟需求", "康復用品", "長照資源", "轉介醫院專業人員"];
 
@@ -791,7 +769,7 @@
             if (need === "營養資源") {
                 resourcesHtml += `<div class="resource-card block-nut"><h4>🥑 營養補給：癌症營養評估與專業諮詢</h4>`;
                 if (d.cancer === "頭頸癌(口腔癌)") {
-                    resourcesHtml += `<p style="background-color: #FFFDF0; border: 2px dashed #D4A373; padding: 14px; border-radius: 8px; margin-bottom: 15px;">
+                    resourcesHtml += `<p style="background-color: #FFFDF0; border: 2px dashed #D4A373; padding: 12px; border-radius: 8px; margin-bottom: 12px;">
                     <strong>🌟 【頭頸癌/口腔癌病友專屬】放射科營養諮詢（免費）：</strong><br>
                     ⏰ 服務時間：<strong>星期二上午 9:00 - 12:00</strong>、<strong>星期三下午 14:00 - 17:00</strong></p>`;
                 }
@@ -803,7 +781,7 @@
                 resourcesHtml += `<div class="resource-card block-psy"><h4>❤️ 心理支持：心理支持與情緒協談</h4>
                 <p>面對治療帶來的心理壓力，專業的協談團隊隨時都在：</p>`;
                 if (d.cancer === "頭頸癌(口腔癌)") {
-                    resourcesHtml += `<p style="background-color: #FFFDF0; border: 2px dashed #4A90E2; padding: 14px; border-radius: 8px; margin-top: 15px; margin-bottom: 15px;">
+                    resourcesHtml += `<p style="background-color: #FFFDF0; border: 2px dashed #4A90E2; padding: 12px; border-radius: 8px; margin-top: 12px; margin-bottom: 12px;">
                     <strong>🌟 【頭頸癌/口腔癌病友專屬團隊】陽光福利基金會雲嘉中心：</strong><br>
                     📞 服務電話：<strong>(05)228-0300</strong>
                     </p>
@@ -812,13 +790,18 @@
                 resourcesHtml += `<p>1. <strong>安心專線：直撥 1925</strong> (24小時免付費心理諮詢)<br>
                 2. <strong>衛生局社區心理衛生中心</strong>：${pTxt}</p></div>`;
             }
+            
             if (need === "經濟需求") {
                 resourcesHtml += `<div class="resource-card block-eco"><h4>💸 五、經濟需求：經濟弱勢扶助與特別補助</h4>
                 <p><strong>部分資源需要經濟評估，若有任何問題，請洽門診2樓-癌症病友服務中心 05-2765041分機7172 梁浩瑋社工師</strong></p>
                 <a href="https://www.ecancer.org.tw/service/resource_grant/xaw3e" target="_blank" class="resource-link">🚗 1. 交通補助 (遠地就醫)</a>
                 <a href="https://www.ecancer.org.tw/service/resource_grant/oral_nutritional_supplements" target="_blank" class="resource-link">🍼 2. 營養品補助 (弱勢癌友)</a>
+                <a href="https://www.gov.tw/News_Content_26_574274" target="_blank" class="resource-link">🏛️ 3. 經濟資源</a>
+                <a href="http://edufund.cyut.edu.tw" target="_blank" class="resource-link">🏫 4. 教育部學產基金</a>
+                <a href="https://www.crm.org.tw/class/subsidy/985" target="_blank" class="resource-link">🎓 5. 獎學金</a>
                 </div>`;
             }
+            
             if (need === "康復用品") {
                 resourcesHtml += `<div class="resource-card block-sup"><h4>💇 照護醫材：康復用品資源與輔具租借導航</h4>
                 <p>1. <strong>【實體窗口】</strong>：親洽<strong>門診大樓 2 樓癌症病友服務中心</strong>，現場提供多樣實體物資免費租借。</p>
@@ -827,13 +810,18 @@
             if (need === "長照資源") {
                 resourcesHtml += `<div class="resource-card block-ltc"><h4>🧓 照顧減輕：國家長期照顧服務 (長照 2.0)</h4><p>日常生活失能就醫接送，不限年齡皆可申請：<br>📞 申請專線：<strong>請直撥 1966</strong></p></div>`;
             }
+            
             if (need === "轉介醫院專業人員") {
-                resourcesHtml += `<div class="resource-card block-ref"><h4>🧑‍⚕️ 專業轉介：轉介醫院個管師 / 社工師特別窗口</h4><p>若希望個管師 or 社工師主動與您聯繫，請填寫線上轉介單：</p><a href="https://docs.google.com/forms/d/e/1FAIpQLScTMuaMN-m4hTsfRYVHs4Yuf9RWFmJ-k5Y6ls2e1JTbdmhJqQ/viewform?usp=publish-editor" target="_blank" class="resource-link">📋 填寫 線上轉介表單</a></div>`;
+                resourcesHtml += `<div class="resource-card block-ref"><h4>🧑‍⚕️ 專業轉介：轉介醫院個管師 / 社工師特別窗口</h4>
+                <p>若希望個管師 or 社工師主動與您聯繫，請填寫線上轉介單：</p>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLScTMuaMN-m4hTsfRYVHs4Yuf9RWFmJ-k5Y6ls2e1JTbdmhJqQ/viewform?usp=publish-editor" target="_blank" class="resource-link" style="color:#fff; background-color:#6B8E23; border-color:#6B8E23;">📋 填寫 線上轉介表單</a>
+                </div>`;
             }
         });
 
         resourcesHtml += `<div class="resource-card block-ref" style="border-style: solid;"><h4>💸 醫療社會資源服務諮詢</h4>
-            <p>如果您在上述媒合資源之外，仍面臨其他個別因癌症導致之急難特殊困難，歡迎聯繫社會服務窗口。</p></div>`;
+            <p>如果您在上述媒合資源之外，仍面臨其他個別因癌症導致之急難特殊困難，歡迎聯繫社會服務窗口：<br>
+            📞 <b>電話：(05)276-5041 分機 7172 梁浩瑋社工師</b></p></div>`;
 
         document.getElementById('resources-output-list').innerHTML = resourcesHtml;
         switchTab('result-tab');
