@@ -12,104 +12,114 @@
             color: #3A3A3A; /* 柔和深灰 */
             line-height: 1.7; margin: 0; padding: 0;
             font-weight: 700; /* 全域字體加粗 */
+            -webkit-tap-highlight-color: transparent;
         }
         .app-container {
-            max-width: 850px; margin: 40px auto; background: #FDFBF7; /* 手作紙張感白 */
-            border-radius: 16px; box-shadow: 0 8px 30px rgba(107, 142, 35, 0.1); overflow: hidden; 
+            max-width: 850px; 
+            margin: 20px auto; 
+            background: #FDFBF7; /* 手作紙張感白 */
+            border-radius: 16px; 
+            box-shadow: 0 8px 30px rgba(107, 142, 35, 0.1); 
+            overflow: hidden; 
             border: 2px solid #E3DEC3;
             border-top: 10px solid #6B8E23; /* 抹茶綠頂條 */
         }
         .app-header { 
             background-color: #6B8E23; /* 抹茶綠 */
-            color: #FDFBF7; padding: 35px 30px; text-align: center;
+            color: #FDFBF7; padding: 35px 20px; text-align: center;
             background-image: radial-gradient(#7A9F33 15%, transparent 16%), radial-gradient(#7A9F33 15%, transparent 16%);
             background-size: 30px 30px; background-position: 0 0, 15px 15px; /* 日系點點復古風 */
         }
-        .app-header h1 { margin: 0; font-size: 28px; font-weight: 900; letter-spacing: 2px; text-shadow: 1px 1px 2px rgba(0,0,0,0.15); }
-        .app-header p { margin: 12px 0 0 0; font-size: 16px; font-weight: 800; opacity: 0.95; letter-spacing: 1px; }
+        .app-header h1 { margin: 0; font-size: 26px; font-weight: 900; letter-spacing: 1px; text-shadow: 1px 1px 2px rgba(0,0,0,0.15); }
+        .app-header p { margin: 12px 0 0 0; font-size: 15px; font-weight: 800; opacity: 0.95; }
         
-        /* 頁籤美化 */
-        .tabs { display: flex; background: #EFECE4; border-bottom: 2px solid #E3DEC3; padding: 0 10px; }
+        /* 頁籤 RWD 美化 */
+        .tabs { display: flex; background: #EFECE4; border-bottom: 2px solid #E3DEC3; padding: 0 5px; }
         .tab-btn {
-            flex: 1; padding: 16px 10px; text-align: center; background: none; border: none;
-            font-size: 18px; font-weight: 900; color: #555555; cursor: pointer; transition: all 0.2s;
-            margin: 5px 2px 0 2px; border-radius: 10px 10px 0 0;
+            flex: 1; padding: 14px 5px; text-align: center; background: none; border: none;
+            font-size: 16px; font-weight: 900; color: #555555; cursor: pointer; transition: all 0.2s;
+            margin: 5px 2px 0 2px; border-radius: 8px 8px 0 0;
+            white-space: nowrap;
         }
-        .tab-btn.active { background: #FDFBF7; color: #6B8E23; border-top: 3px solid #6B8E23; font-size: 19px; }
+        .tab-btn.active { background: #FDFBF7; color: #6B8E23; border-top: 3px solid #6B8E23; font-size: 17px; }
         
-        .tab-content { padding: 40px 35px; display: none; }
+        .tab-content { padding: 25px 20px; display: none; }
         .tab-content.active { display: block; }
         
         /* 章節標題 */
-        h2 { font-size: 22px; color: #4A5D23; border-bottom: 2px dashed #C2CCA3; padding-bottom: 8px; margin-top: 0; margin-bottom: 25px; font-weight: 900; display: flex; align-items: center; }
-        h2::before { content: "🌱 "; margin-right: 8px; font-size: 20px; }
+        h2 { font-size: 20px; color: #4A5D23; border-bottom: 2px dashed #C2CCA3; padding-bottom: 8px; margin-top: 10px; margin-bottom: 20px; font-weight: 900; display: flex; align-items: center; }
+        h2::before { content: "🌱 "; margin-right: 6px; font-size: 18px; }
         
-        .form-group { margin-bottom: 28px; }
-        .form-group label { display: block; font-weight: 900; margin-bottom: 10px; color: #4A5D23; font-size: 18px; }
-        .form-row { display: flex; gap: 20px; }
-        .form-row .form-group { flex: 1; }
+        .form-group { margin-bottom: 20px; width: 100%; }
+        .form-group label { display: block; font-weight: 900; margin-bottom: 8px; color: #4A5D23; font-size: 17px; }
         
-        /* 輸入框與下拉選單 */
+        /* 🎯 RWD 彈性列：預設在手機上垂直排列 (column) */
+        .form-row { display: flex; flex-direction: column; gap: 0; }
+        
+        /* 輸入框與下拉選單優化（適合手指點擊） */
         input[type="text"], input[type="number"], select, textarea {
-            width: 100%; padding: 12px 14px; border: 2px solid #D1CBB3; border-radius: 10px;
-            font-size: 17px; color: #3A3A3A; background-color: #FDFBF7; outline: none; transition: all 0.2s; font-weight: 800;
+            width: 100%; padding: 14px; border: 2px solid #D1CBB3; border-radius: 10px;
+            font-size: 16px; color: #3A3A3A; background-color: #FDFBF7; outline: none; font-weight: 800;
+            display: block;
         }
         input[type="text"]:focus, input[type="number"]:focus, select:focus, textarea:focus { border-color: #6B8E23; background-color: #FFFFFA; box-shadow: 0 0 0 4px rgba(107, 142, 35, 0.15); }
         textarea { font-family: inherit; resize: vertical; min-height: 100px; }
 
-        /* 複選方格 */
+        /* 複選方格 RWD 彈性格柵 */
         .checkbox-group {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px;
-            background: #F4F1E9; padding: 18px; border-radius: 12px; border: 2px solid #E3DEC3;
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); 
+            gap: 12px;
+            background: #F4F1E9; padding: 16px; border-radius: 12px; border: 2px solid #E3DEC3;
         }
-        .checkbox-item { display: flex; align-items: center; font-size: 16px; color: #444444; cursor: pointer; font-weight: 800; }
-        .checkbox-item input { margin-right: 10px; transform: scale(1.3); accent-color: #6B8E23; cursor: pointer; }
+        .checkbox-item { display: flex; align-items: center; font-size: 15px; color: #444444; cursor: pointer; font-weight: 800; min-height: 30px; }
+        .checkbox-item input { margin-right: 8px; transform: scale(1.3); accent-color: #6B8E23; cursor: pointer; }
         
-        /* 心情溫度計表格 */
+        /* 🎯 RWD 心情溫度計優化：在小螢幕上將橫向按鈕優雅自適應 */
         .bsrs-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; border: 2px solid #E3DEC3; border-radius: 8px; overflow: hidden; }
-        .bsrs-table th, .bsrs-table td { padding: 14px; text-align: left; border-bottom: 1px solid #E3DEC3; font-size: 16px; }
+        .bsrs-table th, .bsrs-table td { padding: 12px 10px; text-align: left; border-bottom: 1px solid #E3DEC3; font-size: 15px; }
         .bsrs-table th { background-color: #EFECE4; color: #4A5D23; font-weight: 900; }
-        .bsrs-options { display: flex; gap: 12px; }
-        .bsrs-options label { display: flex; align-items: center; font-size: 16px; font-weight: 800; margin: 0; cursor: pointer; }
-        .bsrs-options input { margin-right: 5px; transform: scale(1.2); accent-color: #6B8E23; }
+        .bsrs-tr-item { display: flex; flex-direction: column; padding: 12px 10px; border-bottom: 1px solid #E3DEC3; }
+        .bsrs-title-text { font-weight: 900; color: #4A5D23; margin-bottom: 8px; font-size: 16px; }
+        .bsrs-options { display: flex; gap: 10px; flex-wrap: wrap; justify-content: space-between; background: #FDFBF7; padding: 6px 10px; border-radius: 8px; border: 1px solid #EFECE4; }
+        .bsrs-options label { display: flex; align-items: center; font-size: 15px; font-weight: 800; margin: 0; cursor: pointer; padding: 6px 4px; }
+        .bsrs-options input { margin-right: 4px; transform: scale(1.3); accent-color: #6B8E23; }
         
         /* 按鈕樣式 */
         .btn-submit {
             display: block; width: 100%; background-color: #6B8E23; color: white; border: none;
-            padding: 16px; font-size: 19px; font-weight: 900; border-radius: 10px; cursor: pointer;
-            transition: all 0.3s; margin-top: 30px; box-shadow: 0 4px 12px rgba(107, 142, 35, 0.2);
+            padding: 16px; font-size: 18px; font-weight: 900; border-radius: 10px; cursor: pointer;
+            transition: all 0.3s; margin-top: 20px; box-shadow: 0 4px 12px rgba(107, 142, 35, 0.2);
             border-bottom: 4px solid #4A5D23;
         }
-        .btn-submit:hover { background-color: #5B7D1A; transform: translateY(-1px); box-shadow: 0 6px 16px rgba(107, 142, 35, 0.3); }
-        .btn-submit:active { transform: translateY(1px); border-bottom: 1px solid #4A5D23; }
         
         /* 結果呈現與保底區塊 */
-        .result-section { background: #F1F4E8; border: 2px solid #D2DCB4; border-radius: 12px; padding: 24px; margin-bottom: 30px; }
-        .result-section h3 { margin-top: 0; color: #3D4F1D; font-size: 19px; display: flex; align-items: center; gap: 10px; font-weight: 900; }
+        .result-section { background: #F1F4E8; border: 2px solid #D2DCB4; border-radius: 12px; padding: 20px; margin-bottom: 25px; }
+        .result-section h3 { margin-top: 0; color: #3D4F1D; font-size: 18px; display: flex; align-items: center; gap: 8px; font-weight: 900; }
         
-        /* 🎯 精準優化：動態媒合資源卡片独立色塊樣式 */
-        .resource-card { background: #FDFBF7; border: 2px solid #E3DEC3; border-radius: 12px; padding: 24px; margin-bottom: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
-        .resource-card h4 { margin: 0 0 12px 0; color: #3A4F1D; font-size: 19px; font-weight: 900; display: flex; align-items: center; }
+        /* 動態媒合資源卡片独立色塊樣式 */
+        .resource-card { background: #FDFBF7; border: 2px solid #E3DEC3; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
+        .resource-card h4 { margin: 0 0 12px 0; color: #3A4F1D; font-size: 18px; font-weight: 900; display: flex; align-items: center; }
         .resource-card h4::before { content: "🍀"; margin-right: 8px; }
-        .resource-card p { margin: 0 0 14px 0; font-size: 16px; color: #3A3A3A; font-weight: 800; }
+        .resource-card p { margin: 0 0 14px 0; font-size: 15px; color: #3A3A3A; font-weight: 800; }
         
         /* 獨立色塊主題配色定義 */
-        .block-med { background-color: #F0F7F4; border-left: 6px solid #6B8E23; border-color: #D6E8D8; } /* 醫療/副作用-薄荷綠 */
-        .block-nut { background-color: #FFFDF0; border-left: 6px solid #D4A373; border-color: #F7EBC6; } /* 營養-鵝黃色 */
-        .block-psy { background-color: #F4F7FC; border-left: 6px solid #4A90E2; border-color: #D3E2F4; } /* 心理支持-湖水藍 */
-        .block-eco { background-color: #FFF5F5; border-left: 6px solid #E53E3E; border-color: #FAD4D4; } /* 經濟扶助-粉紅色 */
-        .block-sup { background-color: #FAF5FF; border-left: 6px solid #9B5DE5; border-color: #EEDFFF; } /* 康復用品-薰衣草紫 */
-        .block-ltc { background-color: #F0F9FF; border-left: 6px solid #00B4D8; border-color: #D0F4DE; } /* 長照資源-青天藍 */
-        .block-ref { background-color: #FFFBF0; border-left: 6px solid #DD6B20; border-color: #F7E7C4; border-style: dashed; } /* 專業轉介-金橘色 */
+        .block-med { background-color: #F0F7F4; border-left: 6px solid #6B8E23; border-color: #D6E8D8; }
+        .block-nut { background-color: #FFFDF0; border-left: 6px solid #D4A373; border-color: #F7EBC6; }
+        .block-psy { background-color: #F4F7FC; border-left: 6px solid #4A90E2; border-color: #D3E2F4; }
+        .block-eco { background-color: #FFF5F5; border-left: 6px solid #E53E3E; border-color: #FAD4D4; }
+        .block-sup { background-color: #FAF5FF; border-left: 6px solid #9B5DE5; border-color: #EEDFFF; }
+        .block-ltc { background-color: #F0F9FF; border-left: 6px solid #00B4D8; border-color: #D0F4DE; }
+        .block-ref { background-color: #FFFBF0; border-left: 6px solid #DD6B20; border-color: #F7E7C4; border-style: dashed; }
 
-        /* 連結按鈕 */
+        /* 連結按鈕 RWD（滿版寬度適合手機點擊） */
         .resource-link {
-            display: inline-block; background-color: #F6F3E6; color: #5B7D1A; padding: 10px 18px;
+            display: block; text-align: center; background-color: #F6F3E6; color: #5B7D1A; padding: 12px 14px;
             border-radius: 8px; text-decoration: none; font-size: 15px; font-weight: 900; transition: all 0.2s; border: 2px solid #C2CCA3; margin-bottom: 8px;
         }
         .resource-link:hover { background-color: #6B8E23; color: white; border-color: #6B8E23; }
         
-        /* 海報圖片與QR碼美化 */
+        /* 海報圖片與QR碼自適應 */
         .poster-img {
             display: block; max-width: 100%; height: auto; border-radius: 12px; 
             margin: 15px auto; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border: 2px solid #E3DEC3;
@@ -117,33 +127,49 @@
         .qr-container {
             background-color: #FFF; border: 2px dashed #6B8E23; padding: 15px; border-radius: 12px;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
-            max-width: 220px; margin: 15px 0; box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            max-width: 100%; margin: 15px auto; box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
-        .qr-img { width: 160px; height: 160px; display: block; margin-bottom: 8px; }
+        .qr-img { width: 150px; height: 160px; display: block; margin-bottom: 8px; }
         .qr-text { font-size: 13px; color: #555; text-align: center; font-weight: bold; }
 
         /* 高風險警示框 */
         .alert-box {
-            background-color: #FFF0F5; border: 2px dashed #E53E3E; border-left: 8px solid #E53E3E; color: #742A2A;
-            padding: 20px; border-radius: 10px; margin-bottom: 25px; font-size: 16px; font-weight: 800;
+            background-color: #FFF0F5; border: 2px dashed #E53E3E; border-left: 6px solid #E53E3E; color: #742A2A;
+            padding: 16px; border-radius: 10px; margin-bottom: 20px; font-size: 15px; font-weight: 800;
         }
-        .alert-box a { color: #E53E3E; font-weight: 900; text-decoration: underline; font-size: 17px; }
+        .alert-box a { color: #E53E3E; font-weight: 900; text-decoration: underline; }
         
-        /* 🎯 精準優化：滿意度獨立卡片色塊化調校 */
+        /* 滿意度獨立卡片色塊化 */
         .rating-block-item {
-            background-color: #F4F6F0; border: 2px solid #E3DEC3; border-radius: 12px; padding: 20px; margin-bottom: 18px;
+            background-color: #F4F6F0; border: 2px solid #E3DEC3; border-radius: 12px; padding: 18px; margin-bottom: 16px;
         }
-        .rating-block-item:nth-child(1) { background-color: #F4F7FC; border-left: 6px solid #4A90E2; border-color: #D3E2F4; } /* 題一藍色塊 */
-        .rating-block-item:nth-child(2) { background-color: #FFFDF0; border-left: 6px solid #D4A373; border-color: #F7EBC6; } /* 題二黃色塊 */
-        .rating-block-item:nth-child(3) { background-color: #F0F7F4; border-left: 6px solid #6B8E23; border-color: #D6E8D8; } /* 題三綠色塊 */
+        .rating-block-item:nth-child(1) { background-color: #F4F7FC; border-left: 6px solid #4A90E2; border-color: #D3E2F4; }
+        .rating-block-item:nth-child(2) { background-color: #FFFDF0; border-left: 6px solid #D4A373; border-color: #F7EBC6; }
+        .rating-block-item:nth-child(3) { background-color: #F0F7F4; border-left: 6px solid #6B8E23; border-color: #D6E8D8; }
 
-        .rating-title { font-size: 17px; font-weight: 900; color: #2D3748; margin-bottom: 12px; }
-        .rating-options { display: flex; gap: 16px; font-size: 16px; font-weight: 800; align-items: center; flex-wrap: wrap; }
-        .rating-options label { display: flex; align-items: center; cursor: pointer; margin: 0; }
-        .rating-options input { transform: scale(1.3); margin-right: 6px; accent-color: #6B8E23; cursor: pointer; }
+        .rating-title { font-size: 16px; font-weight: 900; color: #2D3748; margin-bottom: 12px; }
+        .rating-options { display: flex; gap: 12px; font-size: 15px; font-weight: 800; align-items: center; flex-wrap: wrap; justify-content: space-between; }
+        .rating-options label { display: flex; align-items: center; cursor: pointer; margin: 0; padding: 6px 4px; }
+        .rating-options input { transform: scale(1.3); margin-right: 6px; accent-color: #6B8E23; }
         
         .loading-text { color: #6B8E23; font-weight: 900; display: none; margin-top: 15px; text-align: center; font-size: 17px; }
-        .warning-text { background-color: #FFFDF0; border: 2px solid #EEDCA5; border-left: 6px solid #DD6B20; color: #692411; padding: 16px; font-size: 15px; border-radius: 8px; margin-bottom: 20px; font-weight: 800; }
+        .warning-text { background-color: #FFFDF0; border: 2px solid #EEDCA5; border-left: 6px solid #DD6B20; color: #692411; padding: 14px; font-size: 14px; border-radius: 8px; margin-bottom: 15px; font-weight: 800; line-height: 1.5; }
+
+        /* 🎯 關鍵 RWD 媒體查詢：當螢幕寬度大於 600px (如平版 iPad、電腦螢幕) 時自動解鎖併排版面 */
+        @media (min-width: 600px) {
+            .app-container { margin: 40px auto; }
+            .app-header { padding: 45px 30px; }
+            .app-header h1 { font-size: 32px; }
+            .tab-content { padding: 40px 35px; }
+            .form-row { flex-direction: row; gap: 20px; }
+            .checkbox-group { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 14px; }
+            .bsrs-tr-item { flex-direction: row; align-items: center; justify-content: space-between; }
+            .bsrs-title-text { margin-bottom: 0; width: 45%; }
+            .bsrs-options { width: 50%; justify-content: flex-start; gap: 14px; border: none; padding: 0; background: transparent; }
+            .resource-link { display: inline-block; width: auto; margin-right: 10px; }
+            .rating-options { justify-content: flex-start; gap: 16px; }
+            .qr-container { max-width: 220px; margin: 15px 0; }
+        }
     </style>
 </head>
 <body>
@@ -160,6 +186,7 @@
         <button class="tab-btn" id="btn-tab3" onclick="switchTab('satisfaction-tab')" disabled>⭐ 滿意度回饋</button>
     </div>
 
+    <!-- 頁籤一：資料輸入 -->
     <div id="client-tab" class="tab-content active">
         <form id="resourceForm" onsubmit="processData(event)">
             <h2>1. 基本資料登記</h2>
@@ -250,7 +277,7 @@
 
             <h2>2. 福利身分資格 (可複選)</h2>
             <div class="form-group">
-                <div class="checkbox-group" style="grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));">
+                <div class="checkbox-group">
                     <label class="checkbox-item"><input type="checkbox" name="welfare" value="重大傷病">重大傷病</label>
                     <label class="checkbox-item"><input type="checkbox" name="welfare" value="身心障礙證明">身心障礙證明</label>
                     <label class="checkbox-item"><input type="checkbox" name="welfare" value="中低收">中低收入戶</label>
@@ -266,7 +293,7 @@
 
             <h2>3. 醫療保險狀況 (可複選)</h2>
             <div class="form-group">
-                <div class="checkbox-group" style="grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));">
+                <div class="checkbox-group">
                     <label class="checkbox-item"><input type="checkbox" name="insurance" value="無" onchange="toggleNoInsurance(this)">無</label>
                     <label class="checkbox-item"><input type="checkbox" name="insurance" value="實支實付">實支實付型</label>
                     <label class="checkbox-item"><input type="checkbox" name="insurance" value="日額給付">住院日額型</label>
@@ -277,21 +304,36 @@
             </div>
 
             <h2>4. 心情溫度計 (BSRS-5 簡式健康量表評估)</h2>
-            <table class="bsrs-table">
-                <thead><tr><th>評估項目 (最近一星期困擾程度)</th><th>分數 (0=無 ~ 4=極重)</th></tr></thead>
-                <tbody>
-                    <tr><td>1. 感覺緊張不安</td><td><div class="bsrs-options"><label><input type="radio" name="bsrs1" value="0" checked> 0</label><label><input type="radio" name="bsrs1" value="1"> 1</label><label><input type="radio" name="bsrs1" value="2"> 2</label><label><input type="radio" name="bsrs1" value="3"> 3</label><label><input type="radio" name="bsrs1" value="4"> 4</label></div></td></tr>
-                    <tr><td>2. 覺得容易苦惱或動怒</td><td><div class="bsrs-options"><label><input type="radio" name="bsrs2" value="0" checked> 0</label><label><input type="radio" name="bsrs2" value="1"> 1</label><label><input type="radio" name="bsrs2" value="2"> 2</label><label><input type="radio" name="bsrs2" value="3"> 3</label><label><input type="radio" name="bsrs2" value="4"> 4</label></div></td></tr>
-                    <tr><td>3. 感覺憂鬱、心情低落</td><td><div class="bsrs-options"><label><input type="radio" name="bsrs3" value="0" checked> 0</label><label><input type="radio" name="bsrs3" value="1"> 1</label><label><input type="radio" name="bsrs3" value="2"> 2</label><label><input type="radio" name="bsrs3" value="3"> 3</label><label><input type="radio" name="bsrs3" value="4"> 4</label></div></td></tr>
-                    <tr><td>4. 覺得比不上別人</td><td><div class="bsrs-options"><label><input type="radio" name="bsrs4" value="0" checked> 0</label><label><input type="radio" name="bsrs4" value="1"> 1</label><label><input type="radio" name="bsrs4" value="2"> 2</label><label><input type="radio" name="bsrs4" value="3"> 3</label><label><input type="radio" name="bsrs4" value="4"> 4</label></div></td></tr>
-                    <tr><td>5. 睡眠困難，如不易入睡等</td><td><div class="bsrs-options"><label><input type="radio" name="bsrs5" value="0" checked> 0</label><label><input type="radio" name="bsrs5" value="1"> 1</label><label><input type="radio" name="bsrs5" value="2"> 2</label><label><input type="radio" name="bsrs5" value="3"> 3</label><label><input type="radio" name="bsrs5" value="4"> 4</label></div></td></tr>
-                    <tr style="background:#FFF5F5;"><td style="color:#c53030; font-weight:bold;">★ 附加題：有自殺想法嗎？</td><td><div class="bsrs-options"><label><input type="radio" name="bsrs_suicide" value="0" checked> 0(無)</label><label><input type="radio" name="bsrs_suicide" value="1"> 1(輕)</label><label><input type="radio" name="bsrs_suicide" value="2"> 2(中)</label><label><input type="radio" name="bsrs_suicide" value="3"> 3(重)</label><label><input type="radio" name="bsrs_suicide" value="4"> 4(極重)</label></div></td></tr>
-                </tbody>
-            </table>
+            <div style="border: 2px solid #E3DEC3; border-radius: 12px; overflow: hidden; margin-bottom: 25px;">
+                <div class="bsrs-tr-item">
+                    <div class="bsrs-title-text">1. 感覺緊張不安</div>
+                    <div class="bsrs-options"><label><input type="radio" name="bsrs1" value="0" checked> 0</label><label><input type="radio" name="bsrs1" value="1"> 1</label><label><input type="radio" name="bsrs1" value="2"> 2</label><label><input type="radio" name="bsrs1" value="3"> 3</label><label><input type="radio" name="bsrs1" value="4"> 4</label></div>
+                </div>
+                <div class="bsrs-tr-item">
+                    <div class="bsrs-title-text">2. 覺得容易苦惱或動怒</div>
+                    <div class="bsrs-options"><label><input type="radio" name="bsrs2" value="0" checked> 0</label><label><input type="radio" name="bsrs2" value="1"> 1</label><label><input type="radio" name="bsrs2" value="2"> 2</label><label><input type="radio" name="bsrs2" value="3"> 3</label><label><input type="radio" name="bsrs2" value="4"> 4</label></div>
+                </div>
+                <div class="bsrs-tr-item">
+                    <div class="bsrs-title-text">3. 感覺憂鬱、心情低落</div>
+                    <div class="bsrs-options"><label><input type="radio" name="bsrs3" value="0" checked> 0</label><label><input type="radio" name="bsrs3" value="1"> 1</label><label><input type="radio" name="bsrs3" value="2"> 2</label><label><input type="radio" name="bsrs3" value="3"> 3</label><label><input type="radio" name="bsrs3" value="4"> 4</label></div>
+                </div>
+                <div class="bsrs-tr-item">
+                    <div class="bsrs-title-text">4. 覺得比不上別人</div>
+                    <div class="bsrs-options"><label><input type="radio" name="bsrs4" value="0" checked> 0</label><label><input type="radio" name="bsrs4" value="1"> 1</label><label><input type="radio" name="bsrs4" value="2"> 2</label><label><input type="radio" name="bsrs4" value="3"> 3</label><label><input type="radio" name="bsrs4" value="4"> 4</label></div>
+                </div>
+                <div class="bsrs-tr-item">
+                    <div class="bsrs-title-text">5. 睡眠困難，如不易入睡等</div>
+                    <div class="bsrs-options"><label><input type="radio" name="bsrs5" value="0" checked> 0</label><label><input type="radio" name="bsrs5" value="1"> 1</label><label><input type="radio" name="bsrs5" value="2"> 2</label><label><input type="radio" name="bsrs5" value="3"> 3</label><label><input type="radio" name="bsrs5" value="4"> 4</label></div>
+                </div>
+                <div class="bsrs-tr-item" style="background:#FFF5F5;">
+                    <div class="bsrs-title-text" style="color:#c53030;">★ 附加題：有自殺想法嗎？</div>
+                    <div class="bsrs-options" style="background:#FFF5F5;"><label><input type="radio" name="bsrs_suicide" value="0" checked> 0(無)</label><label><input type="radio" name="bsrs_suicide" value="1"> 1(輕)</label><label><input type="radio" name="bsrs_suicide" value="2"> 2(中)</label><label><input type="radio" name="bsrs_suicide" value="3"> 3(重)</label><label><input type="radio" name="bsrs_suicide" value="4"> 4(極重)</label></div>
+                </div>
+            </div>
 
             <h2>5. 您與家屬目前最需要的協助 (可複選)</h2>
             <div class="form-group">
-                <div class="checkbox-group" style="grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));">
+                <div class="checkbox-group">
                     <label class="checkbox-item"><input type="checkbox" name="needs" value="醫療資訊">醫療資訊</label>
                     <label class="checkbox-item"><input type="checkbox" name="needs" value="治療副作用">治療副作用</label>
                     <label class="checkbox-item"><input type="checkbox" name="needs" value="營養資源">營養資源</label>
@@ -307,6 +349,7 @@
         </form>
     </div>
 
+    <!-- 頁籤二：專屬資源結果 -->
     <div id="result-tab" class="tab-content">
         <div id="crisis-alert" class="alert-box" style="display:none;">
             <strong>⚠️ 系統緊急關懷提示：</strong>
@@ -316,7 +359,7 @@
 
         <div class="result-section">
             <h3 id="user-welcome-title">✨ 專屬資源導航結果</h3>
-            <p id="user-profile-summary" style="font-size:17px; color:#2d3748; margin-top:5px;"></p>
+            <p id="user-profile-summary" style="font-size:16px; color:#2d3748; margin-top:5px;"></p>
         </div>
 
         <div class="result-section" id="dynamic-welfare-section" style="background:#FDFBF7; border-color:#E3DEC3; display:none;">
@@ -330,16 +373,16 @@
         <button class="btn-submit" style="background-color:#6B8E23; border-bottom-color: #4A5D23; margin-top: 40px;" onclick="switchTab('satisfaction-tab')">👉 我已看完資源，前往填寫回饋</button>
     </div>
 
+    <!-- 頁籤三：滿意度調查 -->
     <div id="satisfaction-tab" class="tab-content">
         <h2>6. 系統使用滿意度回饋</h2>
         <form id="satForm" onsubmit="submitSatisfaction(event)">
-            
             <div class="rating-block-item">
                 <div class="rating-title">1. 您對於『資源提供的豐富性』是否滿意？</div>
                 <div class="rating-options">
                     <label><input type="radio" name="sat_res" value="1" required> 1分</label>
                     <label><input type="radio" name="sat_res" value="2"> 2分</label>
-                    <label><input type="radio" name="sat_res" value="3"> 3分</label>
+                    <label><input type="radio" name="sat_res" value="3" checked> 3分</label>
                     <label><input type="radio" name="sat_res" value="4"> 4分</label>
                     <label><input type="radio" name="sat_res" value="5"> 5分</label>
                 </div>
@@ -350,7 +393,7 @@
                 <div class="rating-options">
                     <label><input type="radio" name="sat_opt" value="1" required> 1分</label>
                     <label><input type="radio" name="sat_opt" value="2"> 2分</label>
-                    <label><input type="radio" name="sat_opt" value="3"> 3分</label>
+                    <label><input type="radio" name="sat_opt" value="3" checked> 3分</label>
                     <label><input type="radio" name="sat_opt" value="4"> 4分</label>
                     <label><input type="radio" name="sat_opt" value="5"> 5分</label>
                 </div>
@@ -359,9 +402,9 @@
             <div class="rating-block-item">
                 <div class="rating-title">3. 系統提供您的資源，後續您會嘗試使用嗎？</div>
                 <div class="rating-options">
-                    <label><input type="radio" name="sat_all" value="會" required> 會</label>
-                    <label><input type="radio" name="sat_all" value="考慮中"> 考慮中</label>
-                    <label><input type="radio" name="sat_all" value="不會"> 不會</label>
+                    <label><input type="checkbox" name="sat_all" value="會" required> 會</label>
+                    <label><input type="checkbox" name="sat_all" value="考慮中"> 考慮中</label>
+                    <label><input type="checkbox" name="sat_all" value="不會"> 不會</label>
                 </div>
             </div>
             
@@ -378,7 +421,6 @@
 
 <script {safari-fix}>
     const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwWFPe2OrbapgI4tIFoBE8jgW79HBochs5ntt1ShBVRy9IygDh6psaXtC-0UpFetJYAlA/exec";
-
     let currentCasePayload = null;
 
     function switchTab(tabId) {
@@ -388,6 +430,7 @@
         
         let btnIndex = (tabId === 'client-tab') ? 0 : (tabId === 'result-tab' ? 1 : 2);
         document.querySelectorAll('.tab-btn')[btnIndex].classList.add('active');
+        window.scrollTo(0, 0); // 切換分頁時自動捲動到最上方
     }
 
     function calculateAge() {
@@ -434,7 +477,7 @@
         let suicideScore = parseInt(document.querySelector('input[name="bsrs_suicide"]:checked').value);
         let isUrgent = (bsrsScore >= 6 || suicideScore > 0);
 
-        // 🎯 保留精簡不重複資料設計：第一步僅網頁本地暫存
+        // 完美暫存：此時絕不重複寫入後台
         currentCasePayload = {
             name: name, phone: phone, gender: gender, age: age, county: county, cancer: cancer, stage: stage,
             treatments: treatments.join("、"), welfares: welfares.join("、"), insurances: insurances.join("、"),
@@ -452,11 +495,8 @@
         if (welfares.includes("低收") || welfares.includes("中低收")) {
             dynamicWelfareHtml += `<div class='resource-card block-eco'>
                 <h4>💰 經濟扶助聯動：低收/中低收入戶專屬</h4>
-                <p>依據您的福利身分，符合之各縣市政府<strong>【看護補助】</strong>與<strong>【醫療費用補助】</strong>資格。有需求者<strong>「請保留診斷書（內容須註明：因為疾病需要，需專人看護）與醫療收據正本、看護證明及看護收據」</strong>，相關文件請送至戶籍地之村/里幹事。若有任何申請疑問，歡迎來電洽詢 <strong>(05)276-5041 分機 7175 社工室</strong>。</p>
+                <p>依據您的福利身分，符合各縣市政府<strong>【看護補助】</strong>與<strong>【醫療費用補助】</strong>資格。有需求者<strong>「請保留診斷書（內容須註明：因為疾病需要，需專人看護）與醫療收據正本、看護證明及看護收據」</strong>，相關文件請送至戶籍地之村/里幹事。若有任何申請疑問，歡迎來電洽詢 <strong>(05)276-5041 分機 7175 社工室</strong>。</p>
             </div>`;
-        }
-        if (treatments.includes("術後") && welfares.includes("社會保險")) {
-            dynamicWelfareHtml += `<div class='resource-card block-med'><h4>✂️ 手術後權益聯動：法定保險失能給付</h4><p>請特別注意：社會保險失能給付通常需要您在手術療程結束、<strong>治療滿 6 個月以上</strong>且經醫師診斷症狀固定、無法改善後才能提出申請。部分符合障礙標準者，亦可於門診時<strong>主動洽詢您的手術主治醫師</strong>評估開立障礙鑑定報告。</p></div>`;
         }
         if (welfares.includes("重大傷病")) {
             dynamicWelfareHtml += `<div class='resource-card block-med'><h4>🏥 健保權益聯動：重大傷病免部分負擔</h4><p>癌症核定重大傷病後，<strong>「該癌別相關看診與住院，均可免除 10% 的健保部分負擔費用」</strong>，就醫時請主動出示健保卡。</p></div>`;
@@ -478,7 +518,7 @@
             document.getElementById('dynamic-welfare-section').style.display = "block";
         } else { document.getElementById('dynamic-welfare-section').style.display = "none"; }
 
-        // 🎯 核心回歸優化：根據勾選需求，精準 1:1 對等彈出專屬獨立色塊資源
+        // 依據勾選需求，1:1 對等彈出專屬獨立自適應色塊資源
         let resourcesHtml = "<h2>6. 動態媒合之可信任官方資源清單</h2>";
         if (needs.length === 0) needs = ["醫療資訊", "治療副作用", "營養資源", "心理支持", "經濟需求", "康復用品", "長照資源", "轉介醫院專業人員"];
 
@@ -486,14 +526,14 @@
             if (need === "醫療資訊") {
                 if (cancer === "乳癌") {
                     resourcesHtml += `<div class="resource-card block-med"><h4>📘 醫療指引：【乳癌專科與病友團體導航】</h4>
-                    <p>已為您精準連線本院（嘉義基督教醫院）多專科照護團隊與病友團體專區。提供您乳癌整合醫療、最新衛教資訊以及實體溫慢陪伴：</p>
-                    <p><strong>【布蕾斯特聯誼會（乳癌病友團體）入會指引】</strong>：抗癌路上您並不孤單，歡迎加入本院布蕾斯特聯誼會相互扶持。<strong>「請至社工室 (D棟1樓，分機7175) 或癌症病友服務中心 (門診大樓二樓) 填寫入會申請表，即可免費入會。」</strong></p>
-                    <a href="https://www.cych-surgery.org.tw/page2_content.aspx?p_type=2&c_id=0&id=8&p_id=41" target="_blank" class="resource-link">🌐 進入 1. 嘉基一般外科 - 乳房外科官方網站</a><br>
+                    <p>已為您精準連線本院多專科照護團隊與病友團體專區。提供您乳癌整合醫療、最新衛教資訊以及實體溫慢陪伴：</p>
+                    <p><strong>【布蕾斯特聯誼會入會指引】</strong>：歡迎加入本院布蕾斯特聯誼會相互扶持。<strong>「請至社工室 (D棟1樓，分機7175) 或癌症病友服務中心 (門診大樓二樓) 填寫入會申請表，即可免費入會。」</strong></p>
+                    <a href="https://www.cych-surgery.org.tw/page2_content.aspx?p_type=2&c_id=0&id=8&p_id=41" target="_blank" class="resource-link">🌐 進入 1. 嘉基一般外科 - 乳房外科官方網站</a>
                     <a href="https://department.cych.org.tw/item.aspx?unitNo=3700&cID=1100&ID=1332" target="_blank" class="resource-link">🌐 進入 2. 嘉基乳癌暨乳房外科核心照護團隊專區</a></div>`;
                 } 
                 else if (cancer === "肺癌") {
                     resourcesHtml += `<div class="resource-card block-med"><h4>📘 肺癌專屬官方資源：【肺癌攻略】</h4>
-                    <p>專為肺癌病友及其家屬設計的數位全方位照護指南，由台灣癌症基金會權威製作。內容包含確診後的基因檢測、治療規劃、副作用管理及心理調適：</p>
+                    <p>專為肺癌病友及其家屬設計的數位全方位照護指南，由台灣癌症基金會權威製作：</p>
                     <a href="https://lungcancer.ecancer.org.tw/" target="_blank" class="resource-link">🌐 點此直接進入：肺癌攻略官方網站</a>
                     <div class="qr-container">
                         <img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://lungcancer.ecancer.org.tw/&color=6B8E23" alt="肺癌攻略網址QR碼" class="qr-img">
@@ -503,7 +543,7 @@
                 }
                 else if (cancer === "淋巴癌") {
                     resourcesHtml += `<div class="resource-card block-med"><h4>📘 淋巴癌專屬官方資源：【淋巴癌攻略】</h4>
-                    <p>專為淋巴癌病友及其家屬設計的數位資訊指南，由台灣癌症基金會權威製作。內容涵蓋淋巴癌的分型、最新治療趨勢、副作用照護與日常調養：</p>
+                    <p>專為淋巴癌病友及其家屬設計的數位資訊指南，由台灣癌症基金會權威製作：</p>
                     <a href="https://lymphoma.ecancer.org.tw/" target="_blank" class="resource-link">🌐 點此直接進入：淋巴癌攻略官方網站</a>
                     <div class="qr-container">
                         <img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://lymphoma.ecancer.org.tw/&color=6B8E23" alt="淋巴癌攻略網址QR碼" class="qr-img">
@@ -512,8 +552,8 @@
                     </div>`;
                 }
                 else if (cancer === "血癌") {
-                    resourcesHtml += `<div class="resource-card"><h4>📘 血癌專屬官方資源：【血癌攻略】</h4>
-                    <p>專為血癌病友及其家屬設計的權威數位導航，由台灣癌症基金會精心製作。完整解析血癌分類、化學治療、標靶藥物與骨髓移植等核心衛教：</p>
+                    resourcesHtml += `<div class="resource-card block-med"><h4>📘 血癌專屬官方資源：【血癌攻略】</h4>
+                    <p>專為血癌病友及其家屬設計的權威數位導航，由台灣癌症基金會精心製作：</p>
                     <a href="https://leukemia.ecancer.org.tw/" target="_blank" class="resource-link">🌐 點此直接進入：血癌攻略官方網站</a>
                     <div class="qr-container">
                         <img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://leukemia.ecancer.org.tw/&color=6B8E23" alt="血癌攻略網址QR碼" class="qr-img">
@@ -526,14 +566,13 @@
                 }
             }
             if (need === "治療副作用") {
-                resourcesHtml += `<div class="resource-card block-med"><h4>🧪 症狀照護：治療副作用管理與照護</h4><p>對應副作用照護需求，提供化療、放療、手術及各項治療副作用之日常居家管理權威解答與實用管理指引。</p><a href="https://www.crm.org.tw/sub-category/2/?category=a" target="_blank" class="resource-link">🌐 進入 台灣癌症資源網-治療副作用照護專區</a></div>`;
+                resourcesHtml += `<div class="resource-card block-med"><h4>🧪 症狀照護：治療副作用管理與照護</h4><p>化療、放療、手術及各項治療副作用之日常照護權威解答與實用管理指引。</p><a href="https://www.crm.org.tw/sub-category/2/?category=a" target="_blank" class="resource-link">🌐 進入 台灣癌症資源網-治療副作用照護專區</a></div>`;
             }
             if (need === "營養資源") {
                 resourcesHtml += `<div class="resource-card block-nut"><h4>🥑 營養補給：癌症營養評估與專業諮詢</h4>`;
                 if (cancer === "頭頸癌(口腔癌)") {
                     resourcesHtml += `<p style="background-color: #FFFDF0; border: 2px dashed #D4A373; padding: 14px; border-radius: 8px; margin-bottom: 15px;">
                     <strong>🌟 【頭頸癌/口腔癌病友專屬】放射科營養諮詢（免費）：</strong><br>
-                    療程期間補充足夠營養是順利完成放療的關鍵，本院特別提供免費放療諮詢服務，歡迎病友多加利用。<br>
                     ⏰ 服務時間：<strong>星期二上午 9:00 - 12:00</strong>、<strong>星期三下午 14:00 - 17:00</strong><br>
                     📍 實體諮詢地點：<strong>G棟地下二樓 放射腫瘤科</strong></p>`;
                 }
@@ -541,20 +580,17 @@
                 <a href="https://www.crm.org.tw/sub-category/5/?category=a" target="_blank" class="resource-link">🌐 進入 台灣癌症資源網 - 飲食與營養專區</a></div>`;
             }
             if (need === "心理支持") {
-                let pTxt = county.includes("嘉義縣") ? "嘉義縣心衛中心 : 05-3621150" : "嘉義市心衛中心 : 05-2255155";
-                if (county === "其他") pTxt = "請洽居住地衛生局社區心理衛生中心詢問";
-
+                let pTxt = county.includes("嘉義") ? (county.includes("縣") ? "嘉義縣心衛中心:05-3621150" : "嘉義市心衛中心:05-2255155") : "請洽居住地衛生局社區心理衛生中心";
                 resourcesHtml += `<div class="resource-card block-psy"><h4>❤️ 心理支持：心理支持與情緒協談</h4>
                 <p>面對治療帶來的心理壓力，專業的協談團隊隨時都在。歡迎多加利用實體與線上免費資源：</p>`;
                 if (cancer === "頭頸癌(口腔癌)") {
                     resourcesHtml += `<p style="background-color: #FFFDF0; border: 2px dashed #4A90E2; padding: 14px; border-radius: 8px; margin-top: 15px; margin-bottom: 15px;">
-                    <strong>🌟 【頭頸癌/口腔癌病友專屬團隊】陽光社會福利基金會雲嘉中心：</strong><br>
-                    整合社工、復健、心理、社教等專業團隊，全方位協助頭頸癌病人改善生理功能與心理支持。<br><br>
+                    <strong>🌟 【頭頸癌/口腔癌病友專屬團隊】陽光福利基金會雲嘉中心：</strong><br>
                     📞 服務電話：<strong>(05)228-0300</strong><br>
                     📍 服務地址：<strong>600嘉義市西區延平街448號12樓之2</strong>
                     <img src="yangsun.jpg" alt="陽光基金會雲嘉中心海報" class="poster-img">
                     </p>
-                    <a href="https://forms.gle/kgFvzZQDHHTbSnB39" target="_blank" class="resource-link" style="color:#fff; background-color:#6B8E23; border-color: #6B8E23; margin-bottom:15px;">📋 填寫 陽光基金會雲嘉中心線上轉介表單</a><br><br>`;
+                    <a href="https://forms.gle/kgFvzZQDHHTbSnB39" target="_blank" class="resource-link" style="color:#fff; background-color:#6B8E23; border-color: #6B8E23; margin-bottom:15px;">📋 填寫 陽光基金會雲嘉中心線上轉介表單</a>`;
                 }
                 resourcesHtml += `<p>1. <strong>安心專線：直撥 1925</strong> (24小時免付費國家級心理諮詢通道)<br>
                 2. <strong>衛生局社區心理衛生中心</strong>：${pTxt}<br>
@@ -569,35 +605,28 @@
                     📞 聯繫諮詢窗口：<strong>(05)228-0300</strong>
                     <img src="yangsun.jpg" alt="陽光基金會經濟協助海報" class="poster-img">
                     </p>
-                    <a href="https://forms.gle/kgFvzZQDHHTbSnB39" target="_blank" class="resource-link" style="color:#fff; background-color:#6B8E23; border-color: #6B8E23; margin-bottom:20px;">📋 填寫 陽光基金會雲嘉中心線上轉介表單</a><br><br>`;
+                    <a href="https://forms.gle/kgFvzZQDHHTbSnB39" target="_blank" class="resource-link" style="color:#fff; background-color:#6B8E23; border-color: #6B8E23; margin-bottom:20px;">📋 填寫 陽光基金會雲嘉中心線上轉介表單</a>`;
                 }
-                resourcesHtml += `<p><strong>【重要提醒】</strong>：任何資源皆需經過嚴謹的經濟狀況評估。若面臨中斷 or 困難，請洽 <strong>嘉基社工室 (05)276-5041 分機 7175</strong>。</p>
-                <div style="margin-top:5px; display:flex; flex-direction:column; gap:6px;">
-                    <div>🚗 交通補助：<a href="https://www.ecancer.org.tw/service/resource_grant/xaw3e" target="_blank" class="resource-link">遠地就醫交通補助</a></div>
-                    <div>🍼 營養品補助：<a href="https://www.ecancer.org.tw/service/resource_grant/oral_nutritional_supplements" target="_blank" class="resource-link">弱勢癌友營養品補助</a></div>
-                    <div>🏛️ 政府急難救助：<a href="https://www.gov.tw/News_Content_26_574274" target="_blank" class="resource-link">政府強化社會安全網急難方案</a></div>
-                    <div>🏫 教育部學產基金：<a href="https://edufund.cyut.edu.tw/Home/Rule" target="_blank" class="resource-link">教育部學產基金網站 (申請表單可至本院社工室或者該學生學校領取)</a></div>
-                    <div>🎓 獎學金：<a href="https://www.crm.org.tw/class/subsidy/985" target="_blank" class="resource-link">癌症家庭子女獎助學金</a></div>
-                </div></div>`;
+                resourcesHtml += `<p><strong>【重要提醒】</strong>：任何資源皆需經過嚴謹的經濟狀況評估。若面臨困難，請洽 <strong>嘉基社工室 (05)276-5041 分機 7175</strong>。</p>
+                <a href="https://edufund.cyut.edu.tw/Home/Rule" target="_blank" class="resource-link">🌐 教育部學產基金網站 (申請表單可至本院社工室或者該學生學校領取)</a>
+                <a href="https://www.gov.tw/News_Content_26_574274" target="_blank" class="resource-link">🏛️ 政府強化社會安全網急難方案說明</a></div>`;
             }
             if (need === "康復用品") {
-                resourcesHtml += `<div class="resource-card block-sup"><h4>🧽 照護醫材：康復用品資源與輔具租借導航</h4>
+                resourcesHtml += `<div class="resource-card block-sup"><h4>💇 照護醫材：康復用品資源與輔具租借導航</h4>
                 <p>1. <strong>【本院窗口】</strong>：親洽<strong>門診大樓 2 樓癌症病友服務中心</strong>，現場提供多元康復用品諮詢與實體物資免費租借。<br>
-                2. <strong>【國家長照輔具服務】</strong>：若生活失能需要輔具補助，請直撥 <strong>1966 長照專線</strong>。<br>
-                3. <strong>【線上權威查詢平台】</strong>：</p>
+                2. <strong>【國家長照輔具服務】</strong>：若生活失能需要輔具補助，請直撥 <strong>1966 長照專線</strong>。</p>
                 <a href="https://www.crm.org.tw/sub-category/9/?category=b" target="_blank" class="resource-link">🌐 進入 台灣癌症資源網 - 康復物品與輔具租借專區</a></div>`;
             }
             if (need === "長照資源") {
                 resourcesHtml += `<div class="resource-card block-ltc"><h4>🧓 照顧減輕：國家長期照顧服務 (長照 2.0)</h4><p>日常生活失能就醫接送，不限年齡皆可申請：<br>📞 申請專線：<strong>請直撥 1966</strong></p><a href="https://1966.gov.tw/LTC/mp-207.html" target="_blank" class="resource-link">🌐 進入 衛福部長照官網</a></div>`;
             }
             if (need === "轉介醫院專業人員") {
-                resourcesHtml += `<div class="resource-card block-ref"><h4>🧑‍⚕️ 專業轉介：轉介醫院個管師 / 社工師特別窗口</h4><p>對應您希望專業人員主動協助的需求，請填寫線上轉介單：</p><a href="https://docs.google.com/forms/d/e/1FAIpQLScTMuaMN-m4hTsfRYVHs4Yuf9RWFmJ-k5Y6ls2e1JTbdmhJqQ/viewform?usp=publish-editor" target="_blank" class="resource-link" style="color:#fff; background-color:#6B8E23; border-color: #6B8E23;">📋 填寫 嘉基個管中心線上轉介表單</a></div>`;
+                resourcesHtml += `<div class="resource-card block-ref"><h4>🧑‍⚕️ 專業轉介：轉介醫院個管師 / 社工師特別窗口</h4><p>若希望個管師 or 社工師主動與您聯繫，請填寫線上單：</p><a href="https://docs.google.com/forms/d/e/1FAIpQLScTMuaMN-m4hTsfRYVHs4Yuf9RWFmJ-k5Y6ls2e1JTbdmhJqQ/viewform?usp=publish-editor" target="_blank" class="resource-link" style="color:#fff; background-color:#6B8E23; border-color: #6B8E23;">📋 填寫 嘉基個管中心線上轉介表單</a></div>`;
             }
         });
 
-        // 固定的保底全方位諮詢卡片
         resourcesHtml += `<div class="resource-card block-ref" style="border-style: solid;"><h4>💸 嘉基社工室全方位資源服務諮詢</h4>
-            <p>如果您面臨上述以外的個別急難困難，歡迎直接來電或親洽窗口：<br>📞 電話：<strong>(05)276-5041 分機 7175 社工室</strong></p></div>`;
+            <p>歡迎直接來電或親洽窗口：<br>📞 電話：<strong>(05)276-5041 分機 7175 社工室</strong></p></div>`;
 
         document.getElementById('resources-output-list').innerHTML = resourcesHtml;
         switchTab('result-tab');
@@ -619,7 +648,7 @@
             sat_comments: satComments
         });
 
-        // 打包一次性送出（不重複兩行）
+        // 完結篇：此時才一次性打包上傳，確保完美的單一個案數據
         fetch(GAS_WEB_APP_URL, {
             method: "POST",
             mode: "no-cors",
@@ -627,13 +656,8 @@
             body: JSON.stringify(finalPayload)
         }).then(() => {
             document.getElementById('loading2').style.display = "none";
-            alert("✨ 登記成功！資料已同步至嘉基雲端試算表，感謝您的寶貴意見。");
-            document.getElementById('satForm').reset();
-            document.getElementById('resourceForm').reset();
-            
-            document.getElementById('nav-result-tab').style.display = "none";
-            document.getElementById('nav-sat-tab').style.display = "none";
-            switchTab('client-tab');
+            alert("✨ 登記成功！個案與滿意度資料已完整寫入嘉基雲端試算表，感謝您的寶貴回饋。");
+            location.reload(); // 完美歸零，回到第一頁
         });
     }
 </script>
